@@ -64,4 +64,10 @@
 
 ## OpenJDK 구현체 
 
-- OpenJDK의 명세는 JCP(오라클, IBM, SAP 등으로 구성)에 의해서 결정된다. 
+- OpenJDK의 명세는 JCP(오라클, IBM, SAP 등으로 구성)에 의해서 결정된다.
+ OpenJDK는 결정된 스펙(Java SE 7: JSR 336, Java SE 8:JSR 337)을 구현한 레퍼런스 소스코드이다. 많은 상업 JVM 벤더들이 이 OpenJDK를 완벽히 준수하는 구현체로 인정된다. Oracle JDK 또한 Java SE 7 부터 이 OpenJDK를 기반으로 앞서 설명한 추가 요소를 담아 배포한다.
+
+ - 트위터는 OpenJDK를 자사에 맞게 튜닝한 Twitter-JDK 위에서 자사의 서비스를 운영한다.
+
+ - `Azul Systems` (미국 소재의 Java Runtime 제작 전문 회사)는 `Zulu`라는 OpenJDK 기반 빌드에 부가 기능을 추가한 Windows, Linux, Mac OS X 바이너리를 무료로 제공한다. 이 회사는 서버 부하에 최적화된 `Zing` 이라는 JVM을 판매한다. 엔터프라이즈 시장에서 Oracle JDK의 대안으로는 현재 독보적 위치에 있다. 테스트에서 Oracle JDK 보다 성능이 좋았다는 사례도 있다.  실제로 고성능을 요구하는 Cassandra 노드들은 Zing 기반으로 운영된다.
+  
