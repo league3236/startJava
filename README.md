@@ -409,3 +409,22 @@ class StudentSamlple {
 
 
 
+`this를 사용하는 경우`
+
+```
+class Student {
+    String name;
+    int score;
+    static final int MAX_SCORE = 100;
+
+    String getName() {
+        return name;
+    }
+    
+    void setName(String name) {         This.name = name;     }
+    int getScore() {         return score;     }
+}
+```
+
+
+
