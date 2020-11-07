@@ -3,6 +3,13 @@
 
 - https://findstar.pe.kr/2019/01/20/install-openjdk-by-homebrew/
 
+## ipad로 코딩하기
+
+https://boxnwhis.kr/2020/01/11/coding_with_ipad.html
+
+이전에 쓰던 맥북프로를 회사에 반납해야만 했다. (이직하면서....)  그래서 spring 개발을 ipad나 new mac(2015)로 진행하려한다.  최대한 가볍게 이용하기 위해서... 
+new mac 2015에서는 vsc를 ide로 사용하려 한다.
+
 
 ## OpenJDK
 
@@ -133,3 +140,74 @@ load된 class의 bytecode를 실행하는 runtime module이 바로 execution eng
 3. java 커맨드를 실행하여 java VM이 클래스 파일에 기재된 코드를 해석하여 처리한다. Java VM은 위도우용 또는 리눅스용 등 각 os마다 준비되어 있으며 사용하는 os에 따라 실제적인 처리를 실시한다. 즉, 이 단계에서 각 os별로 내부 처리의 차이가 있다.
 
 
+
+
+
+## 문법 day1
+
+32 비트값에서 상위 16비트/하위 16비트를 추출
+
+```
+int number = 0x12345678
+int lower = number & 0x0000ffff;
+system.out.printf(“lower = %x\n”, lower);
+```
+
+`Switch`
+
+switch에서 사용하는 변수로는 다음과 같은 것을 이용 
+- 숫자값a
+- enum 타입
+- 문자열 
+```
+Month month = LocalDateTime.now().getMonth();
+
+switch (month) {
+    case MARCH :
+    case APRIL :
+    case MAY:
+        Sytem.out.println(month + “는 봄이다”);         break;
+    case JUNE:
+    case JULY:
+    case AUGUST:
+         System.out.println(month + “는 봄이다”);
+    ...     default:
+    System.out.println(month + “는 봄이다”);
+             break; }
+```
+
+`For 문`
+
+```
+int sum = 0;
+
+for(int i = 1; i <= 10; i++) {
+    sum += i;
+    System.out.println(i + “번째: ” + sum); }
+```
+
+```
+int[] numbers = {1, 1, 2, 3, 5, 8, 13, 21};
+for (int number : numbers) {
+    System.out.println(number);
+} 
+```
+
+
+`while문/do...while 문`
+
+while문과 do..while문의 차이는 ‘조건 판정을 반복 처리 전에 실시할지 반복처리 후에 할지에 대한 차이’이다. do...while문은 적어도 한번은 실행한다.
+
+```
+while(조건) {
+}
+
+do {
+} while(조건)
+```
+
+```
+Scanner in = new Scanner(System.in);
+System.out.println(“암호를 입력해 주세요”);
+String str = in.nextLine();
+```
