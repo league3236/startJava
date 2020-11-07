@@ -214,13 +214,15 @@ String str = in.nextLine();
 
 while(!str.equals(“abc”)) {
     System.out.println(“암호가 틀립니다. 올바른 암호를 입력해 주세요!”);
-    str = in.nextfLine();     }
+    str = in.nextfLine();    
+}
 
 System.out.println(“OK!”);
 ```
 
 
-``` Scanner in = new Scanner(System.in);
+```
+Scanner in = new Scanner(System.in);
 System.out.println(“암호를 입력해 주세요”);
 String str = in.nextLine();
 
@@ -235,3 +237,71 @@ while(true) {
 
 System.out.println(“OK!”);
 ```
+
+
+## ref
+
+http://www.tcpschool.com/java/java_class_intro
+
+## 객체 지향 프로그래밍(OOP, Object-Oriented Programming)
+
+객체 지향 프로그래밍에서는 모든 데이터를 객체(object)로 취급하며, 이러한 객체가 바로 프로그래밍의 중심이 됩니다.
+
+객체(object)란 간단히 이야기하자면 실생활에서 우리가 인식할 수 있는 사물로 설명할 수 있다.
+
+이러한 객체의 상태(state)와 행동(behavior)을 구체화하는 형태의 프로그래밍이 바로 객체 지향 프로그래밍이다.
+이때 객체를 만들어 내기 위한 설계도와 같은 개념을 클래스(class)라고 한다.
+
+## 클래스란?
+
+자바에서 클래스(class)란 객체를 정의하는 틀 또는 설계도와 같은 의미로 사용된다.
+
+클래스란 변수나 메서드를 모아둔 틀 또는 그릇과 같은 것이다.  프로그램을 만들 때는 구조를 파악하기 쉽도록 프로그램을 분할하는데 그때 우선 클래스 단위로 분할을 고려한다. 그런 방침으로 실제 개체나 개념의 단위로 클래스를 분할하고 그것들을 연계시켜 나가도록 한다. 
+
+클래스는 객체의 상태를 나타내는 필드(field)와 객체의 행동을 나타내는 메소드(method)로 구성된다.
+
+즉,  필드(field)란 클래스에 포함된 변수(variable)를 의미한다.
+또한, 메소드(method)란 어떠한 특정 작업을 수행하기 위한 명령문의 집합이라 할 수 있다.
+
+```
+class Student {
+    // 필드 선언하기
+    String name;
+    int score;
+    Static final int MAX_SCORE = 100;
+}
+```
+`static`이나 `final`은 MAX_SCORE를 변경되지 않는 값으로 정의하고 있음을 나타낸다.
+
+## 메서드 
+
+자바에서 클래스는 멤버(member)로 속성을 표현하는 필드(field)와 기능을 표현하는 메소드(method)를 가진다. 그 중에서 메소드(method)란 어떠한 특정 작업을 수행하기 위한 명령문의 집합이라고 할 수 있다.
+
+```
+// 인수 1개를 건네는 메서드
+void setScore(int newScore) {
+    score = newScore;
+}
+
+// 인수가 없는 메서드
+void printScore() {
+    System.out.println(name.+ “씨의 점수는 ” + score + “점 입니다.”);
+}
+```
+
+메소드 결과값 반환 / 반환값이 없는 경우는 타입을 ‘void’로 지정한다.
+
+```
+// 정수의 반환값을 반환하는 메소드
+int getScore() {
+    return score
+    
+}
+
+// 반환값이 없는 메소드. return 문은 불필요
+void printScore() {
+    System.out.println(name + “씨의 점수는 ” + score + “점 입니다.” );
+}
+```
+
+
