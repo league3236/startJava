@@ -353,3 +353,59 @@ native 숫자는 지정한 메서드가 네이티브한 코드를 호출한다�
 strictfp 수식자는 부동소수점 수를 IEEE 754 규격으로 엄밀하게 관리한다는 지정이다. 
 
 
+
+
+## ref
+
+https://whatisthenext.tistory.com/38
+
+https://cloudstudying.kr/questions/285
+
+## 메서드 오버로딩
+
+클래스 안에서 동일 메서드를 복수 정의할 수 없다.
+
+이때 같은 이름을 갖은 메서드이지만, 서로 다른 매개변수 형식을 가지고 있는 메서드를 여러개 정의하는 것을 `메서드 오버로딩` 이라고 한다.
+
+## main 메서드
+
+자바 프로그램을 실행했을 때 호출되는 프로그램의 시작점인 메서드, 반드시 존재해야 한다.
+
+## 인스턴스
+
+클래스를 객체화한 상태, 컴퓨터의 메모리상에 존재하게 되며 이를 인스턴스라고 한다.
+
+```
+Pizza p1 = new Pizza();
+```
+
+```
+
+public class Student {
+    String name;
+    int Score;
+    static final int MAX_SCORE = 100;
+
+    void printScore() {
+        System.out.println(name + “씨는” + MAX_SCORE + “점 만점 중, ” +score+ “점 입니다.”);
+    }
+}
+
+class StudentSamlple {
+    Public static void main(String... args) {
+        Student league = new Student(); //league이라는 인스턴스를 만든다.
+        league.name = “리그”;
+        league.score = 80;
+        league.printScore();
+
+        Student cat = new Student();
+        cat.name = “캣”;
+        cat.score = 90;
+        cat.printScore();
+    }
+}
+
+```
+
+
+
