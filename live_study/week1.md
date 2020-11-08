@@ -38,15 +38,15 @@ Byte Code 는 JVM 위에서 os상관없이 실행된다. 이런점이 java의 �
 출처 : https://media.vlpt.us/images/hono2030/post/21adf2f3-f155-4e50-bdb6-5e8b1675129c/image.png
 
 
-`class loader`
+- class loader
 
 runtime 시점에 클래스를 로딩하게 해주며 클래스의 인스턴스를 생성하면 클래스 로더를 통해 메모리에 로드하게 된다.
 
-`runtime data areas`
+- runtime data areas
 
 Jvm이 프로그램을 수행하기 위해 os로 부터 별도로 할당 받은 메모리 공간을 말하며, runtime data areas는 크게 5가지 영역으로 나눌 수 있다.
 
-`execution engine`
+- execution engine
 
 load된 class의 bytecode를 실행하는 runtime module이 바로 execution engine이다. class loader를 통해 jvm 내의 runtime data areas에 배치된 바이트 코드는 execution engine에 의해 실행된다. 
 
