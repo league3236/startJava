@@ -113,3 +113,21 @@ Interpreter의 단점을 보완, 전체 바이트 코드를 컴파일, 캐시 �
 [eclipse](https://post.naver.com/viewer/postView.nhn?volumeNo=24616660&memberNo=42458017)
 
 [intellij](https://whitepaek.tistory.com/10)
+
+## 바이트코드란 무엇인가
+
+ref
+
+- https://medium.com/@kimddub/java-jvm%EA%B3%BC-%EB%B0%94%EC%9D%B4%ED%8A%B8%EC%BD%94%EB%93%9C-bytecode-da9f269c8ce9
+- https://ko.wikipedia.org/wiki/%EB%B0%94%EC%9D%B4%ED%8A%B8%EC%BD%94%EB%93%9C
+- https://medium.com/@js230023/%EC%9E%90%EB%B0%94-jvm%EA%B3%BC-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EC%BD%94%EB%93%9C-4e754ee02490
+
+바이트코드(Bytecode, portable code, p-code)는 특정 하드웨어가 아닌 가상 컴퓨터에서 돌아가는 실행 프로그램을 위한 이진 표현법이다. 하드웨어가 아닌 소프트웨어에 의해 처리되기 때문에 보통 기계어 보다 더 추상적이다.
+
+JVM이 사용자가 작성한 .java 소스 코드 파일을 운영체제에 실행 가능한 명령어 집합 파일로 컴파일 하는 과정 중에서 필요한 코드
+
+- JVM이 이해할 수 있는 언어로 변환된 자바 소스코드를 의미
+- 자바 컴파일러에 의해 변환되는 코드의 명령어의 크기가 1byte라서 자바 바이트 코드라고 불림
+- 자바 바이트 코드는 자바 가상 머신만 설치되어 있다면 어느 운영체제에서도 실행 가능
+
+
