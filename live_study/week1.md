@@ -111,3 +111,5 @@ Interpreter의 단점을 보완, 전체 바이트 코드를 컴파일, 캐시 �
 ## 실행하는 방법
 
 [eclipse](https://post.naver.com/viewer/postView.nhn?volumeNo=24616660&memberNo=42458017)
+
+[intellij](https://whitepaek.tistory.com/10)
