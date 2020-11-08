@@ -71,3 +71,30 @@
 
  - `Azul Systems` (미국 소재의 Java Runtime 제작 전문 회사)는 `Zulu`라는 OpenJDK 기반 빌드에 부가 기능을 추가한 Windows, Linux, Mac OS X 바이너리를 무료로 제공한다. 이 회사는 서버 부하에 최적화된 `Zing` 이라는 JVM을 판매한다. 엔터프라이즈 시장에서 Oracle JDK의 대안으로는 현재 독보적 위치에 있다. 테스트에서 Oracle JDK 보다 성능이 좋았다는 사례도 있다.  실제로 고성능을 요구하는 Cassandra 노드들은 Zing 기반으로 운영된다.
   
+
+## mac에 jdk 여러 버전 설치
+
+ref
+
+- https://jojoldu.tistory.com/329
+- https://nesoy.github.io/articles/2019-07/jenv
+
+jenv란?
+
+- 다양한 java version을 하나의 컴퓨터에서 사용하는 상황에서는 매우 복잡함이 있다.
+- python의 pyenv가 있듯이 java의 version을 관리하는 도구
+
+gcc 설치
+
+gcc란 ? GNU 컴파일러 모음. 개발에 되어 널리 쓰이고 있는 컴파일러
+
+```
+$ brew install gcc
+```
+
+jenv 설치
+
+```
+$ brew install jenv
+```
+
