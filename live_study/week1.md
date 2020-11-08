@@ -59,3 +59,44 @@ Garbage Collector(GC)는 Heap 메모리 영역에 생성된 객체들 중에 참
 
 최초 JVM이 나왔을때 Interpreter(한 줄씩 해석하고 실행) 이였기 때문에 속도가 느리다는 단점이 있었지만 JIT compiler (just in time) 방식을 통해 이 점을 보완해왔다. JIT는 bytecode를 어셈블러 같은 nativecode로 바꿔서 실행이 빠르지만 역시 변환하는데 비용이 발생한다. 이 같은 이유 때문에 jvm은 모든 코드를 jit compiler 방식으로 실행하지 않고 interpreter 방식을 사용하다 일정 기준이 넘어가면 jit compiler 방식으로 실행한다.
 
+## 컴파일 하는 방법
+
+ref
+
+- https://superblo.tistory.com/entry/%EC%BB%A4%EB%A7%A8%EB%93%9Ccmd%EC%97%90%EC%84%9C-%EC%9E%90%EB%B0%94-%EC%BB%B4%ED%8C%8C%EC%9D%BC%ED%95%98%EA%B8%B0-%EB%B0%8F-%EC%8B%A4%ED%96%89-%EB%B0%A9%EB%B2%95
+- https://aljjabaegi.tistory.com/387
+
+#### cmd에서 자바 컴파일 하기
+
+class 파일 만들기
+
+```
+$ javac main.java
+```
+
+파일 실행 
+
+```
+$ java main
+```
+
+#### 자바 컴파일 방법
+
+개발자들이 ide나 terminal 환경에서 .java 파일을 생성한다. 그리고 build라는 작업을통해 .class 파일을 생성하게 된다.
+
+이것은 아직 컴퓨터가 읽을 수 없는 자바 바이트코드(반기계어) 이다.
+
+![java compile](https://t1.daumcdn.net/cfile/tistory/995DA63D5AE9701B34)
+
+출처 : https://t1.daumcdn.net/cfile/tistory/995DA63D5AE9701B34
+
+이렇게 생성된 자바 바이트 코드 (.class)는 클래스 로더에 의해서 JVM 내로 로드 되고, 실행 엔진에 의해 기계어로 해석되어 메모리 상(Runtime Data Area)에 배치되게 된다. 
+
+실행엔진에는 Interpreter와 JIT(Just-In-Time) Compiler가 있다.
+Interpreter는 바이트 코드를 한줄씩 읽기 때문에 실행이 느린 단점이 있다.
+
+이러한 단점을 보완하기 위해 나온것이 JIT Compiler이다. 
+인터프리터 방식으로 실행하다가 적절한 시점에 바이트 코드 전체를 컴파일 하고 더이상 인터프리팅 하지 않고 해당 코드를 직접 실행하는 것이다. JIT Compiler에 의해 해석된 코드는 캐시에 보관하기 때문에 한 번 컴파일 된 후에는 빠르게 수행하는 장점이 있다. 
+
+하지만 인터프리팅 방식보다는 훨씬 오래 걸리므로 한번만 실행하면 되는 코드는 인터프리팅하는것이 유리하다.
+
