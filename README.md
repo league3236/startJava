@@ -452,6 +452,32 @@ class Student {
 애노테이션이란 소스 코드 안의 요소 (클래스나 메서드 등)에 대해 정보(메타 데이터)를 설명하는 메커니즘이다.
 클래스나 메서드에 특정 역할 및 의미를 갖게 하는데 사용할 수 있다.
 
+- 메서드의 오버라이드를 나타내는 @Override
+- 비추천을 나타내는 @Deprecated
+- 경고를 출력하지 않도록 하는 @SuppressWarnings
+
+@Override는 메서드의 앞에 기술함으로써 정말 오버라이드 되어있는지를 컴파일러가 체크하게 한다.
+프로그램 작성 시의 실수에 의해 오버라이드가 성립하지 않을 경우 경고를 출력해준다. 
+'소스 코드를 보는 것만으로 메서드가 오버라이드 되어 있는 것을 알 수 있다'는 장점이 있다.
+
+```java
+public class Person {
+    private String name;
+
+    @Override
+    public String toString() {
+        return name
+    }
+}
+```
+
+Override란?
+
+프로그래밍에서 오버라이드를 덮어씌우는 것으로 생각하면 좋다.
+상속 관계인 부모 클래스와 자식 클래스 사이에서 부모 클래스의 메소드를 똑같이 가져와 사용하는 것이다.
+
+## ref
+- https://programmingnote.tistory.com/29
 
 
 
