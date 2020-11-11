@@ -495,7 +495,49 @@ public class Person {
 ```
 
 단순히 get_name 메서드를 삭제하게 되면 Person 클래스를 이용하고 있던 부분에서 컴파일 에러가 발생할지도 모른다. 그래서 get_name 메서드는 @Deprecated 애노테이션을 부여하여 남겨둠으로써 호환성을 유지하도록 한다. 또한 get_name 메서드를 사용하고 있으면 컴파일 시에 경고가 표시되고 이클립스상에서는 get_name 메서드의 호출에 취소선이 생기는 등 비추천임을 이용자에게 알릴 수 있다.
-@SuppressWarnings s
+
+@SuppressWarnings 애노테이션은 코드 안에 억제하고 싶은 경고의 종류를 지정하여 컴파일 시에 경고를 출력하지 않도록 한다. 그러나 경고의 내용을 무시하게 되어 여러 문제점을 야기하기 때문에 사용을 권장하지 않는다.
+
+## 명명규칙
+
+**클래스와 변수는 카멜 케이스로, 상수는 스네이크 케이스로 한다.**
+
+- 카멜케이스 : 복수의 단어로 형성된 복합어에서 각 단어의 첫 글자를 대문자로 표기하는 형식
+- 스네이크 케이스 : 모두 대문자로 단어를 언더스코어(_)로 구분
+
+클래스명 => 대문자로 시작하는 카멜케이스(파스칼 케이스)
+변수 => 소문자로 시작하는 카멜케이스
+상수 => 스네이크 케이스
+
+```
+public class ResultObject {
+    public static final int STATUS_OK = 0;
+
+    private int number;
+
+    priabe String name;
+}
+```
+
+**변수는 명사, 메서드는 동사로 명명**
+
+```java
+public class status {
+    // 이것은 잘못된 명명
+    // private boolean isStarted = false;
+
+    // 올바른 명령은 이것이다.
+    private boolean started = false;  < - 변수는 명사>
+
+    public boolean isStarted()   <- 메소드는 동사>
+        return this.stared
+    }
+
+    public void setstarted(boolean started) {
+        this.started = started
+    }
+}
+```
 
 ## ref
 - https://programmingnote.tistory.com/29
