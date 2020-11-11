@@ -476,6 +476,27 @@ Override란?
 프로그래밍에서 오버라이드를 덮어씌우는 것으로 생각하면 좋다.
 상속 관계인 부모 클래스와 자식 클래스 사이에서 부모 클래스의 메소드를 똑같이 가져와 사용하는 것이다.
 
+@Deprecated는 클래스나 메서드의 사용을 비추천임을 나타내기 위해 사용한다.
+다음의 예는 `Person 클래스의 name 속성을 취득하기 위한 메서드로서 원래부터 준비되어 있던 get_name 메서드에서 getName 메서드로 변경하게 되었음`을 나타내고 있다.
+
+```
+public class Person {
+    private String name;
+
+    @Deprecated
+    public String get_name() {
+        return name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+```
+
+단순히 get_name 메서드를 삭제하게 되면 Person 클래스를 이용하고 있던 부분에서 컴파일 에러가 발생할지도 모른다. 그래서 get_name 메서드는 @Deprecated 애노테이션을 부여하여 남겨둠으로써 호환성을 유지하도록 한다. 또한 get_name 메서드를 사용하고 있으면 컴파일 시에 경고가 표시되고 이클립스상에서는 get_name 메서드의 호출에 취소선이 생기는 등 비추천임을 이용자에게 알릴 수 있다.
+@SuppressWarnings s
+
 ## ref
 - https://programmingnote.tistory.com/29
 
