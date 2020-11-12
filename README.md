@@ -431,6 +431,34 @@ class Student {
 - 값이 나중에 변하는 것
   -> 메서드나 필드를 통하여 값을 설정한다.
 
+## 생성자
+
+`생성자(Constructor)`
+
+생성자는 new 연산자를 통해서 인스턴스를 생성할 때 반드시 호출이 되고 제일 먼저 실행되는 일종의 메소드 (하지만 메소드와는 다르다.)이다. 생성자는 인스턴스 변수 (필드 값 등)를 초기화 시키는 역할을 한다.
+
+`생성자 선언 방법`
+
+- 메서드명이 클래스명과 동일하다
+- 반환값의 선언이 존재하지 않는다
+
+인스턴스를 생성할 때 반드시 생성자를 호출하여야한다. `생성자를 생략하면 컴파일러가 자동으로 기본 생성자(Default Constructor)를 생성`하여 준다. 
+
+```
+public class ConstructorEx01 {
+    // public ConstructorEx01() 
+    // Default contructor 자동 생성
+
+    public static void main(String[] args) {
+        ConstructorEx01 ce = new ConstructorEx01(); // 인스턴스 생성 및 생성자 호출
+    }
+}
+```
+위의 내용처럼 인스턴스를 생성할때 생성자를 호출한다.
+생성자를 생략하면 주석 처리된 부분이 자동으로 생성된다.
+
+
+
 ## javadoc
 
 javadoc은 클래스나 메서드에 정의하는 주석의 일종이다.
