@@ -883,6 +883,67 @@ if(genElement2 != null) {
 }
 ```
 
+
+## 배열이란?
+
+동일 타입의 값을 여러 개 취급할 수 있는 기능이 배열이다.
+인덱스라고 불리는 []로 감싼 0 부터 시작하는 정수를 사용하여 배열의 길이나 순서를 나타낼 수 있다.
+자바에서는 나중에 언급할 컬렉션의 기능이 출실하게 마련되어있어 배열보다도 컬렉션을 사용하는 경우가 많을지도 모르겠지만 기본적으로 파악해 두어야 한다.
+우선 배열을 이요한 간단한 소스 코드를 살펴보자.
+
+```
+int[] array = new int[10]           // 배열의 선언
+array[0] = 1;
+array[1] = 1;
+array[2] = 2;
+array[3] = 3;
+array[4] = 4;
+
+
+System.out.println(array[0]);           //배열에서 값을 추출
+```
+
+배열을 사용한 피보나치 수열을 계산
+
+```
+int[] array = new int[10];
+
+for(int i=0; i<10 ; i++) {
+    if (i <= 1) {
+        array[i] = 1;
+    } else {
+        array[i] = array[i-1] + array[i-2]
+    }
+}
+
+for (int value: array) {
+    System.out.println(value);
+}
+```
+
+만약 배열이 없다면 값의 수만큼 변수를 선언해야한다.
+
+- 배열 초기화 하기
+
+```
+int[] array1 = new int[10];                 // 크기만을 지정
+int[] array2 = {1,2,3,4,5};                 // 초깃값을 지정
+int[] array3 = new int[] {10, 9, 8, 7, 6}   // 초깃값과 타입을 지정
+
+System.out.println(array1.length);          // length로 길이를 알아낼 수 있다.
+```
+
+```
+void log(String message, String[] args) {
+
+}
+
+log("사용자를 등록하였습니다", new String[]{"userName", "Ken"});    //문제없이 실행할 수 있다.
+log("사용자를 등록하였습니다", {"userName", "Ken"});        //컴파일 에러
+```
+
+
+
 ## ref
 - https://programmingnote.tistory.com/29
 - https://heepie.me/32
