@@ -630,6 +630,23 @@ long amount = 123_456_789;
 System.out.println(amount);         //123456789
 ```
 
+## 레퍼 클래스
+
+기본형은 객체가 아니라 단순히 값이며 그 자신은 메서드를 갖지 않는다. 그러나 프로그램 안에서 기본형의 값에 대해 조작이 필요하게 되는 상황이 많이 있다. 그래서 자바는 기본형을 내포하여 해당 기본형의 값을 조작하는 기능을 마련한 '레퍼 클래스'를 제공하고 있다.
+
+래퍼(wrapper)란 `감싼 것`이라는 의미다.
+
+|기본형|래퍼클래스|
+|------|-----------|
+|byte|java.lang.Byte|
+|sort|java.lang.Short|
+|int|java.lang.Integer|
+|long|java.lang.Long|
+|char|java.lang.Character|
+|float|java.lang.Float|
+|double|java.lang.Double|
+|boolean|java.lang.Boolean|
+
 ## ref
 - https://programmingnote.tistory.com/29
 - 자바 마스터북
