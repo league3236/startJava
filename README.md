@@ -579,11 +579,53 @@ javascript나 ruby와 같은 언어는 `동적 타입언어`로 변수의 선언
 
 단, 변수에 어떤 타입의 변수가 포함되어 있는지 실행시까지 정해지지 않으므로 실행시에 비로소 문제가 발생하거나 코딩 시에 IDE의 자동 보완 기능을 활용하기 어렵다는 단점이 있다. 
 
+## 기본형
+
+example
+```
+// int 타입의 정수 리터럴 (10진수)
+int num1 = 123;
+System. out.println(num1);
+
+// int 타입의 정수 리터럴 (8진수)
+int num2 = 010;             // 맨 앞에 0을 붙인다.
+
+// int 타입의 정수 리터럴 (16진수)
+int num3 = 0xa;             // 맨 앞에 0x 또는 0X를 붙인다.
+
+// int 타입의 정수 리터럴 (2진수)
+int num4 = 0b11;            // 맨 앞에 0b 또는 0B를 붙인다.
+
+// long 타입의 정수 리터럴
+long longNum = 1L           // 맨 끝에 l 또는 L을 붙인다.
+
+// float 타입의 부동소수점 리터럴
+float floatNum = 3.14f;         // 맨 끝에 f 또는 F를 붙인다.
+System.out.println(floatNum);    //3.14
+float floatNum2 = 3f;
+System.out.println(floatNum2);    //3.0
+
+
+//double 타입의 부동 소수점 리터럴
+double doubleNum = 3.14;        // 소수점은 디폴트로 double 타입이 된다.
+System.out.println(doubleNum);          //3.14
+double doubleNum2 = 3d;         // 맨 끝에 d 또는 D를 붙인다.
+System.out.println(doubleNum2);     //3.0
+
+//논리 리터럴
+boolean bool = true;                // true 또는 false
+System.out.println(bool)            //true
+
+
+//문자 리터럴
+char c = 'A';                       //작은따옴표(')로 둘러싼다.
+System.out.println(c)
+```
 
 
 ## ref
 - https://programmingnote.tistory.com/29
-
+- 자바 마스터북
 
 
 
