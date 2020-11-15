@@ -968,7 +968,26 @@ newArray1[10] = 89;         //ArrayIndexOutOfBoundException 발생
 우선 배열의 요소를 문자열로 변환하는 메소드이다.
 
 ```
+int[] array = {1,1,2,3,5,9,13};
+System.out.println(array);
+System.out.println(Arrays.toString(array));
 ```
+
+이 처리를 실행하면 다음과 같이 실행된다.
+
+```
+[I@bb60c3
+[1, 1, 2, 3, 5, 9, 13]
+```
+
+첫 번째의 [I@bb60c3의 부분은 다음과 같은 것을 나타낸다.
+
+- [             = 배열
+- ㅑ             = int 타입
+- @이후의문자열    = 해시값
+
+
+
 
 
 ## ref
