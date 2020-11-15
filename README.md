@@ -942,6 +942,33 @@ log("사용자를 등록하였습니다", new String[]{"userName", "Ken"});    /
 log("사용자를 등록하였습니다", {"userName", "Ken"});        //컴파일 에러
 ```
 
+배열은 한번 작성하면 요소 수를 변경할 수 없다.
+그렇기 때문에 이미 작성한 배열의 요소 수를 변경하고 싶은 경우에는 새로운 배열을 작성한 후에 예정 배열에서 새로운 배열로 필요한 정보를 복사해야한다.
+
+```
+int[] array = {1, 1, 2, 3, 5, 9, 13};
+int[] newArray1 = new int[array.length + 3];
+System.arraycopy(array, 0, newArray1, 0, array.length); //자바 5.0까지의 배열 복사 방법
+
+int[] newArray2 = Arrays.copyOf(array, array.length + 3);
+// 자바 6.0 이후의 배열 복사 방법
+
+newArray1[7] = 21;
+newArray1[8] = 34;
+newArray1[9] = 55;
+newArray1[10] = 89;         //ArrayIndexOutOfBoundException 발생
+```
+
+- Arrays 클래스를 이용하여 배열 조작하기
+
+자바에는 배열의 정렬이나 검색 등 자주 사용하는 처리를 정리한 java.util.Arrays 클래스가 준비되어 있다. Arrays 클래스를 이용함으로써 정렬 등도 효율적으로 실시할 수 있다.
+
+**배열의 문자열 변환**
+
+우선 배열의 요소를 문자열로 변환하는 메소드이다.
+
+```
+```
 
 
 ## ref
