@@ -834,6 +834,54 @@ public class ex5 {
 - 인스턴스 생성과 상속 시도 시, 컴파일 에러
 - enum 이라는 키워드로 열거형의 의도를 명확히 드러냄
 
+## 제네릭 (Generics)
+
+클래스 내부에서 사용할 데이터 타입을 외부에서 지정하는 기법을 의미
+
+```
+public class GenericStack<E> {
+
+    private List<E> taskList;
+    public GenericStack() {
+        taskList = new ArrayList<>();
+    }
+    public boolean push(E task) {
+        return taskList.add(task);
+    }
+    
+    public E pop() {
+        if(teskList.isEmpty()) {
+            return null;
+        }
+        
+        return taskList.remove(taskList.size() - 1);
+    }
+}
+```
+
+```
+GenericStack<String> genStack = new GenricStack<>();
+
+genStack.push("Scala");
+genStack.push("Groovy");
+genStack.push("Java");
+
+Stirng genElement.genStack.pop();
+if(genElement != null) {
+    System.out.println(genElement);
+}
+
+GenericStack<Integer> getStack2 = new GenericStack<>();
+
+genStack2.push(100);
+genStack2.push(200);
+
+Integer genElement2 = genStack2.pop();   // 캐스트가 불필요
+
+if(genElement2 != null) {
+    System.out.pritln(genElement2);         //200
+}
+```
 
 ## ref
 - https://programmingnote.tistory.com/29
