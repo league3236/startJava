@@ -567,6 +567,12 @@ public class status {
 }
 ```
 
+##  정적 타입언어와 동적 타입언어
+
+java는 `정적 타입언어`로 변수의 선언 시에 타입을 명기하여 컴파일할때 타입의 정합성(matching)을 체크한다.
+
+javascript나 ruby와 같은 언어는 `동적 타입언어`로 변수의 선언 시에는 타입을 명확하게 하지 않고 실행시에 타입의 정합성을 체크한다.
+
 ## ref
 - https://programmingnote.tistory.com/29
 
