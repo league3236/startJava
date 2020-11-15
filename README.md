@@ -1136,6 +1136,26 @@ log("처리를 종료하였다.", new String[0])
 이 중복된 기술을 없애기 위해서 가변 길이 인수를 사용해 메서드를 정의할 수 있다. 가변 길이 인수는 타입의 뒤에 `...(마침표 3개)`를 붙여서 정의한다.
 가변 길이 인수를 사용함으로써 메서드를 호출하는 쪽은 일일이 배열을 new 할 필요가 없게 되었다.
 
+가변 길이 인수에 의한 메서드 정의
+
+```
+void log(String message, String... args) {
+    System.out.println(message);
+    System.out.println("파라미터:");
+    for (String arg : args) {
+        System.out.println(arg);
+    }
+}
+```
+
+가변 길이 인수에 의한 메서드 호출
+
+```
+log("사용자를 등록하였다", "userName", "KEN");
+log("오류가 발생하였다.", "Cannot load file")
+log("처리를 종료하였다.")
+```
+
 ## ref
 - https://jamesdreaming.tistory.com/137
 - https://icarus8050.tistory.com/10
