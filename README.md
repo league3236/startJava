@@ -647,6 +647,15 @@ System.out.println(amount);         //123456789
 |double|java.lang.Double|
 |boolean|java.lang.Boolean|
 
+- 레퍼 클래스의 대표적인 상수
+
+|상수|설명|
+|------|-----------|
+|SIZE|비트 수|
+|BYTES|바이트 수(Java8)|
+|MAX_VALUE|최댓값|
+|MIN_VALUE|최솟값|
+
 ## ref
 - https://programmingnote.tistory.com/29
 - 자바 마스터북
