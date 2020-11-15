@@ -1001,8 +1001,59 @@ System.out.println(Arrays.toString(array));
 [1, 1, 2, 3, 5, 8, 13]
 ```
 
+객체의 경우, 정렬의 대상이 되는 클래스가 Comparable 인터페이스 구현 클래스가 아니면 ClassCastException이 발생한다는 점에 주의해야 한다.
+
+- Comparable 인터페이스란?
+
+Comparable 인터페이스는 compareTo() 메서드를 통해 객체 간의 순서를 비교할 수 있도록 해준다.
+즉, Comparable 인터페이스를 구현한 클래스는 그 인스턴스들에게 순서가 존재한다는 뜻이다.
+
+Comparable 인터페이스를 구현한면 객체들의 배열을 Arrays.sort() 메서드를 통해 아래와 같이 손쉽게 정렬할 수 있다.
+
+``` java
+public class Node implements Comparable<Node> {
+    private String content;
+    private int order;
+
+    public Node(String content, int order) {
+        this.content = content;
+        this.order = order;
+    }
+
+    @Override
+    public int compareTo(Node o) {
+        return Integer.compare(order, o.order);
+    }
+
+    @Override
+    public String toString() {
+        return "content : " + content + ", order : " + order;
+    }
+}
+```
+
+```
+@Test
+
+public void simpleOrderingNode() {
+    Node[] nodes = new Node[3];
+    nodes[0] = new Node("five", 5);
+    nodes[1] = new Node("three", 3);
+    nodes[2] = new Node("one" 1);
+
+    Arrays.sort(nodes);
+    Arrays.stream(nodes).forEach(n -> System.out.prinln(n.toStirng()));
+
+    // retsult
+    // content : one, order : 1
+    // content : three, order : 3
+    // content : five, order : 5
+}
+```
+
 
 ## ref
+- https://icarus8050.tistory.com/10
 - https://programmingnote.tistory.com/29
 - https://heepie.me/32
 - 자바 마스터북
