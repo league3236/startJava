@@ -987,7 +987,19 @@ System.out.println(Arrays.toString(array));
 - @이후의문자열    = 해시값
 
 
+- 배열의 정렬
 
+배열을 순서대로 나열하는 정렬 처리는 Arrays 클래스의 sort 메서드로 실시할 수 있다. sort 메서드는 자기 자신이 직접 기술하는 것보다도 효율이 좋은 알고리즘으로 정렬을 실시해 준다.
+
+```
+int[] array = {3, 1, 13, 2, 8, 5, 1};
+Arrays.sort(array)
+System.out.println(Arrays.toString(array));
+```
+
+```
+[1, 1, 2, 3, 5, 8, 13]
+```
 
 
 ## ref
