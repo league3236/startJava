@@ -668,11 +668,33 @@ System.out.println(amount);         //123456789
 |toString(기본형의 값)|기본형에서 문자열로 변환한다|
 |toString(기본형의 값, int radix)|진수를 지정해 기본형에서 문자열로 변환한다.|
 
-**스터디시 문의 **
+**스터디시 문의 개인적으로 이부분은 중요하다고 생각함**
+
+valueOf 메서드를 이용하는 경우 사전에 생성된 객체를 이용할 수 있기 때문에 객체를 생성하지 않아 쓸데없이 메모리를 소비하지 않는다.
+
 ```
 // int -> Integer
 Integer num01 = new Integer(10);                // 새로운 객체를 생성하기 때문에 비효율적
+Integer num02 = Integer.vlueOf(10);             // 캐시된 객체를 반환한다.
 
+// Integer -> int
+int num03 = num02.intValue();
+
+
+// String -> Integer
+Integer num04 = new Integer("10");              // 새로운 객체를 생성하기 때문에 비효율적
+Integer num05 = Integer.valueOf("10");          // 캐시된 객체를 반환
+Integer num06 = Integer.valueOf("11", 2);       // 진수 (radix)를 지정한다. 이 경우에 값은 3
+
+// String -> int
+int num07 = Integer.ParseInt("10");
+int num08 = Integer.parseInt("11", 2);          // 진수 (radix)를 지정한다. 이 경우에 값은 3
+
+// int -> String
+String num09 = Integer.toStirng(10);
+
+// Integer -> String
+String num10 = num01.toString();
 ```
 
 ## ref
