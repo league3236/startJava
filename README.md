@@ -622,6 +622,13 @@ char c = 'A';                       //작은따옴표(')로 둘러싼다.
 System.out.println(c)
 ```
 
+수가 많은 숫자값을 표기할 경우 서류 등에서는 콤마(,)를 사용해서 `12,345,678`과 같이 구분해서 표기하는 일이 생긴다. 이런 경우 다음과 같이 언더스코어를 사용하여 구분 표기할 수 있다.
+자바 7 이후에서 사용할수 있게 되었다.
+
+```
+long amount = 123_456_789;
+System.out.println(amount);         //123456789
+```
 
 ## ref
 - https://programmingnote.tistory.com/29
