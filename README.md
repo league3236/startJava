@@ -656,6 +656,25 @@ System.out.println(amount);         //123456789
 |MAX_VALUE|최댓값|
 |MIN_VALUE|최솟값|
 
+- 래퍼 클래스의 대표적인 메서드 
+
+|메서드|설명|
+|------|-----------|
+|valueOf(기본형의 값)|기본형으로부터 래퍼 클래스의 객체로 변환한다.|
+|valueOf(String s)|문자열로부터 래퍼 클래스의 객체로 변환한다.|
+|valueOf(String s, int radix)|진수를 지정해서 문자열로부터 래퍼 클래스의 객체로 변환한다.|
+|parseXxx(String s)|문자열로부터 기본형의 값으로 변환한다.|
+|parseXxx(String s, int radix)|진수를 지정해 문자열로부터 기본형의 값으로 변환한다.|
+|toString(기본형의 값)|기본형에서 문자열로 변환한다|
+|toString(기본형의 값, int radix)|진수를 지정해 기본형에서 문자열로 변환한다.|
+
+**스터디시 문의 **
+```
+// int -> Integer
+Integer num01 = new Integer(10);                // 새로운 객체를 생성하기 때문에 비효율적
+
+```
+
 ## ref
 - https://programmingnote.tistory.com/29
 - 자바 마스터북
