@@ -1051,8 +1051,69 @@ public void simpleOrderingNode() {
 }
 ```
 
+compareTo 메소드는 무엇인가?
+```
+Integer x =7;
+System.out.println(x.compareTo(3)); //7이 3보다 큼 결과값 1
+System.out.println(x.compareTo(7)); //7 7 동일 0
+System.out.println(x.compareTo(77)); //7이 77보다 작으므로 결과값 -1
+```
+
+Comparator 인터페이스의 구현 클래스를 건네, 숫자를 내림차순으로 정렬한 예제
+```
+Integer[] array = {3, 1, 13, 2, 8, 5, 1};
+
+Comparator<Integer> c = new Comparator<Integer> () {
+    @Override
+    public int compare(Integer o1, Integer o2) {
+        return o2.compareTo(o1);
+    }
+};
+
+Arrays.sort(arrsy, c);
+System.out.println(Arrays.toString(array));
+```
+
+결과값
+```
+[13, 8, 5, 3, 2, 1, 1]
+```
+
+위에서 compare 메소드의 반환값에 따라 정렬의 동작이 변한다.
+
+- 배열의 검색
+
+배열 안에서 원하는 번호를 찾으려면, 배열의 검색을 실시할 필요가 잇다.
+
+검색에는 Arrays 클래스의 binarySearch 메서드를 사용할 수 있다.
+binarySearch 메서드는 그 이름대로, 바이너리서치(이진 탐색)를 수행하여 원하는 값을 검색한다.
+
+![binarysearch](https://www.computerhope.com/jargon/b/binary-search.jpg)
+https://www.computerhope.com/jargon/b/binary-search.jpg
+
+```
+int[] array = {1, 1, 4, 5, 7, 8, 11, 12, 17, 21, 24};
+int found = Arrays.binarySearch(array, 5);          // '5'라는 숫자 겁색
+System.out.println(found)               //결과값 3
+
+int notFound = Arrays.binarySearch(array, 6);   // '6'이라는 숫자를 검색
+System.out.println(notFound);
+
+//결과값 마이너스값
+```
+
+찾는값이 없으면 마이너스 결과값이 반환된다.
+또한 정렬되지 않은 값에 대해서는 잘못된 값이 반환되므로 binarySearch는 정렬된 배열에서 사용해야한다.
+
+정렬되지 않은 배열에서는 다음 두가지의 방식을 사용 할 수 있다.
+
+1. 사전에 Arrays 클래스의 sort 메서드를 사용하여 정렬한다.
+2. Arrays 클래스의 binarySearch 메서드를 사용하지 않고 선형 검색 등을 실시한다.
+
+
 
 ## ref
+- https://jamesdreaming.tistory.com/137
 - https://icarus8050.tistory.com/10
 - https://programmingnote.tistory.com/29
 - https://heepie.me/32
