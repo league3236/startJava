@@ -705,10 +705,109 @@ String num10 = num01.toString();
 
 수치 계산에 이용하는 변수는 기본형을 사용하는 것이 좋다. null 체크 등이 불필요하며 대량의 계산이 필요한 경우에는 래퍼형에서 기본형으로 변환에 걸리는 시간도 무시할 수 없기 때문이다.
 
+## enum
 
+Enum은 Enumerated Type으로 `서로 연관된 상수 값들의 집합`이다.
+
+상수는 변하지 않는다는 특징을 이용해 복잡한 값을 단순한 값으로 치환해서 사용할 수 있다.
+
+```java
+public static void main(String[] args) {
+    /*
+    * 1 = banana
+    * 2 = apple
+    * 3 = lemon
+    */
+    int type = 1;
+    switch(type) {
+    case 1:
+        System.out.println("banana");
+        break;
+    case 2:
+        System.out.println("apple");
+        break;
+    case 3:
+        System.out.println("lemon");
+        break;
+    }
+}
+```
+
+문제점은 치환한 값에 대한 정보(주석)가 삭제될 경우, 복잡한 코드로 주석을 찾기 어려워 질 경우 번호의 의미를 알 수 없다.
+해결책으로 주석 삭제 후 변화지 않는 클래스 변수(final static)로 설정할 수 있다.
+
+```java
+private final static int BANANA = 1;
+private final static int APPLE = 2;
+private final static int LEMON = 3;
+
+public static void main(String[] args) {
+    int type = BANANA;
+    switch(type) {
+    case 1:
+        System.out.println("banana");
+        break;
+    case 2:
+        System.out.println("apple");
+        break;
+    case 3:
+        System.out.println("lemon");
+        break;
+    }
+}
+```
+
+문제점은 같은 상수명을 갖는 다른 의미의 값이 존재 가능하고 그 경우 에러를 발생할 수 있다.
+
+```
+private final static int BANANA = 1;
+private final static int APPLE = 2;
+private final static int LEMON = 3;
+
+private final static int GOOGLE = 1;
+private final static int APPLE = 2;
+private final static int MS = 3;
+```
+
+이 경우 해결책 중 하나로 Interface를 통한 상수명 구체화로 상수명의 중복을 피할 수 있다.
+
+```
+interface FRUIT {
+    final static int BANANA = 1;
+    final static int APPLE = 2;
+    final static int LEMON = 3;
+}
+
+interface COMPANY {
+    final static int GOOGLE = 1;
+    final static int APPLE = 2;
+    final static int MS = 3;
+}
+
+..
+    int type = FRUIT.BANANA;
+..
+```
+
+문제점은 의미로 비교할 수 없는 상수간의 비교가 가능하다.
+
+`비교를 하더라도 컴파일 에러가 발생하지 않는다.`
+
+```
+if (FRUIT.APPLE == COMPANY.APPLE) {
+    System.out.println("과일 애플과 회사 애플은 같다.");
+}
+```
+
+그러나 이러한 문제를 모두 해결해 줄 수 있는 것이 `Enum` 이다.
+
+```
+
+```
 
 ## ref
 - https://programmingnote.tistory.com/29
+- https://heepie.me/32
 - 자바 마스터북
 
 
