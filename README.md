@@ -1110,7 +1110,31 @@ System.out.println(notFound);
 1. 사전에 Arrays 클래스의 sort 메서드를 사용하여 정렬한다.
 2. Arrays 클래스의 binarySearch 메서드를 사용하지 않고 선형 검색 등을 실시한다.
 
+- 가변 길이 인수로 메서드 정의하기
 
+로그 메서드의 내부는 다음과 같이 인수의 값을 출력하도록 되어 있다.
+```
+void log(String message, String[] args) {
+    System.out.println(message);
+    System.out.println("매개변수:");
+    for (String arg : args) {
+        System.out.println(arg);
+    }
+}
+```
+
+args 배열에 들어가는 요소의 수는 가변으로, 요소의 수에 상관없이 모든 값을 표시할 수 있도록 되었다. 그러나 이 메서드를 호출하는 쪽은 인수 args 부분에 배열을 건넬 필요가 있어 매번 배열을 new하는 기술이 중복된다.
+
+args의 부분은 항상 new String[]해야 한다.
+
+```
+log("사용자를 등록하였다.", new String[]{"UserName", "ken"})
+log("오류가 발생하였다.", new String[]{"Cannot load file"})
+log("처리를 종료하였다.", new String[0])
+```
+
+이 중복된 기술을 없애기 위해서 가변 길이 인수를 사용해 메서드를 정의할 수 있다. 가변 길이 인수는 타입의 뒤에 `...(마침표 3개)`를 붙여서 정의한다.
+가변 길이 인수를 사용함으로써 메서드를 호출하는 쪽은 일일이 배열을 new 할 필요가 없게 되었다.
 
 ## ref
 - https://jamesdreaming.tistory.com/137
