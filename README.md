@@ -802,8 +802,38 @@ if (FRUIT.APPLE == COMPANY.APPLE) {
 그러나 이러한 문제를 모두 해결해 줄 수 있는 것이 `Enum` 이다.
 
 ```
+enum FRUIT {
+    BANANA, APPLE, LEMON
+}
 
+enum COMPANY {
+    GOOGLE, APPLE, MS
+}
+
+public class ex5 {
+    public static void main(String[] args) {
+        FRUIT type = FRUIT.BANANA;
+        switch (type) {
+        case BANANA:
+            System.out.println("banana");
+            break;
+        case APPLE:
+            System.out.println("apple");
+            break;
+        case LEMON:
+            System.out.println("lemon");
+            break;
+        }
+    }
+}
 ```
+
+**`enum` 장점**
+
+- 코드의 양이 줄었다.
+- 인스턴스 생성과 상속 시도 시, 컴파일 에러
+- enum 이라는 키워드로 열거형의 의도를 명확히 드러냄
+
 
 ## ref
 - https://programmingnote.tistory.com/29
