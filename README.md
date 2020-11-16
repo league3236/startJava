@@ -1374,7 +1374,45 @@ ArrayList와 같이 데이터의 추가, 삭제시 불필요한 데이터의 복
 
 Map 인터페이스는 키와 값의 조합으로 값을 취급한다. List 인터페이스의 경우는 값의 추가는 add 메서드에 값만을 건넸지만, Map 인터페이스의 경우는 값의 추가는 'put' 메서드를 사용하여 키와 값을 동시에 건넨다. 또한 값의 삭제는 키를 지정하여 실시한다.
 
+**Map 초기화**
 
+다음 코드에서는 요소가 빈 HashMap 객체를 생성하고 있다.
+
+```java
+Map<Integer, String> map = new HashMap<>();
+```
+
+List와 동일하게 Map에도 초깃값을 지정할 방법은 없다. 그렇기 때문에 값을 지정하고 싶은 경우는 Map 인터페이스의 put 메서드를 사용하여 하나씩 값을 추가해 나갈 필요가 있다.
+
+```java
+Map<Integer, String> map = new HashMap<>();
+map.put(1, "One");
+map.put(2, "Two");
+map.put(3, "Three");
+```
+
+클래스 초기화 시에 Map도 초기화하고 싶은 경우는 다음과 같이 static 초기화를 사용
+
+```java
+public class MapTest {
+    private static final Map<Integer, String> map;
+
+    static {
+        map = new HashMap<>();
+        map.put(1, "one");
+        map.put(2, "Two");
+        map.put(3, "Three");
+    }
+}
+```
+
+## 갑자기 궁금해 져서 혼자 다시 정리한 내용(위에 내용 중복될 수 있음)
+
+**int와 integer 차이**
+
+`int`는 Privitive 자료형, 산술 연산이 가능하며 null로 초기화 할 수 없다.
+`integer`는 Wrapper 클래스(객체) unboxing하지 않으면 산술 연산이 불가능하지만, null값을 처리 가능
+null 값 처리가 용이하기 때문에 SQL과 연동할 경우 처리가 용이하다.
 
 ## ref
 - https://www.holaxprogramming.com/2014/02/12/java-list-interface/
