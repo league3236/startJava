@@ -1032,7 +1032,7 @@ public class Node implements Comparable<Node> {
 }
 ```
 
-```
+```java
 @Test
 
 public void simpleOrderingNode() {
@@ -1052,7 +1052,7 @@ public void simpleOrderingNode() {
 ```
 
 compareTo 메소드는 무엇인가?
-```
+```java
 Integer x =7;
 System.out.println(x.compareTo(3)); //7이 3보다 큼 결과값 1
 System.out.println(x.compareTo(7)); //7 7 동일 0
@@ -1060,7 +1060,7 @@ System.out.println(x.compareTo(77)); //7이 77보다 작으므로 결과값 -1
 ```
 
 Comparator 인터페이스의 구현 클래스를 건네, 숫자를 내림차순으로 정렬한 예제
-```
+```java
 Integer[] array = {3, 1, 13, 2, 8, 5, 1};
 
 Comparator<Integer> c = new Comparator<Integer> () {
@@ -1091,7 +1091,7 @@ binarySearch 메서드는 그 이름대로, 바이너리서치(이진 탐색)를
 ![binarysearch](https://www.computerhope.com/jargon/b/binary-search.jpg)
 https://www.computerhope.com/jargon/b/binary-search.jpg
 
-```
+```java
 int[] array = {1, 1, 4, 5, 7, 8, 11, 12, 17, 21, 24};
 int found = Arrays.binarySearch(array, 5);          // '5'라는 숫자 겁색
 System.out.println(found)               //결과값 3
@@ -1113,7 +1113,7 @@ System.out.println(notFound);
 - 가변 길이 인수로 메서드 정의하기
 
 로그 메서드의 내부는 다음과 같이 인수의 값을 출력하도록 되어 있다.
-```
+```java
 void log(String message, String[] args) {
     System.out.println(message);
     System.out.println("매개변수:");
@@ -1127,7 +1127,7 @@ args 배열에 들어가는 요소의 수는 가변으로, 요소의 수에 상�
 
 args의 부분은 항상 new String[]해야 한다.
 
-```
+```java
 log("사용자를 등록하였다.", new String[]{"UserName", "ken"})
 log("오류가 발생하였다.", new String[]{"Cannot load file"})
 log("처리를 종료하였다.", new String[0])
@@ -1138,7 +1138,7 @@ log("처리를 종료하였다.", new String[0])
 
 가변 길이 인수에 의한 메서드 정의
 
-```
+```java
 void log(String message, String... args) {
     System.out.println(message);
     System.out.println("파라미터:");
@@ -1150,7 +1150,7 @@ void log(String message, String... args) {
 
 가변 길이 인수에 의한 메서드 호출
 
-```
+```java
 log("사용자를 등록하였다", "userName", "KEN");
 log("오류가 발생하였다.", "Cannot load file")
 log("처리를 종료하였다.")
@@ -1196,13 +1196,13 @@ List 인터페이스는 배열과 비슷한 방법으로 복수의 요소를 처
 
 List 초기화
 
-```
+```java
 List<Integer> list = new ArrayList<>();
 ```
 
 또한 요소의 값을 열거하여 List를 작성하고 싶은 경우에는 다음과 같이 new로 작성항 List에 add 메서드로 요소를 추가할 수 있다.
 
-```
+```java
 List<Integer> list = new ArrayList<>();
 list.add(1);
 list.add(62);
@@ -1232,7 +1232,7 @@ List를 정렬하기 위해서는 java.util.Collections 클래스의 sort 메서
 
 다음의 소스코드는 Collections.sort 메서드를 이용한 정렬 처리이다.
 
-```
+```java
 List<Integer> list = new ArrayList<>();
 list.add(3);
 list.add(1);
@@ -1253,7 +1253,7 @@ System.out.println(list);
 
 List를 검색하기 위해서는 Collections 클래스의 binarySearch 메서드를 이용한다. 
 
-```
+```java
 List<Integer> values = Arrays.asList(1, 1, 4, 5, 7, 8, 11, 12, 17, 21, 24);
 
 int found = Collections.binarySearch(values, 5);
@@ -1265,7 +1265,7 @@ System.out.println(notFound)
 
 **List의 반복자**
 
-```
+```java
 List<String> list = new ArrayList<>();
 list.add("a");
 list.add("b");
@@ -1426,7 +1426,7 @@ Set 인터페이스는 값의 집합을 취급할 수 있는 인터페이스이�
 
 **Set 초기화**
 
-```
+```java
 Set<Integer> integerSet = new HashSet<>();
 ```
 
@@ -1434,14 +1434,14 @@ Set<Integer> integerSet = new HashSet<>();
 
 생성자의 인수로 컬렉션을 건네고 컬렉션을 Set으로 변환한다.
 
-```
+```java
 List<Integer> integerList = new ArrayList<>();
 Set<Integer> integerSet = new HashSet<>(integerList)
 ```
 
 변환하려는 컬렉션의 요소에 중복 요소가 존재하는 경우는 중복이 제외된 후 Set으로 변환된다.
 
-```
+```java
 List<Integer> integerList = Arrays.asList(1, 62, 31, 1, 54, 31);
 System.out.println("List : " + integerList);
 
