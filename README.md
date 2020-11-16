@@ -1188,6 +1188,81 @@ log("처리를 종료하였다.")
 
 List 인터페이스는 배열과 비슷한 방법으로 복수의 요소를 처리할 수 있다.
 
+- 요소를 추가하는 add 메서드
+- 요소를 덮어 쓰는 set 메서드
+- 인덱스를 사용하여 요소를 취득하는 get 메서드
+
+취급하기 쉽기 때문에 컬렉션 프레임워크 중에서도 가장 이용될 기회가 많은 인터페이스다.
+
+List 초기화
+
+```
+List<Integer> list = new ArrayList<>();
+```
+
+또한 요소의 값을 열거하여 List를 작성하고 싶은 경우에는 다음과 같이 new로 작성항 List에 add 메서드로 요소를 추가할 수 있다.
+
+```
+List<Integer> list = new ArrayList<>();
+list.add(1);
+list.add(62);
+list.add(31);
+list.add(1);
+```
+
+이것을 좀 더 간단하게 작성하고 싶은 경우에는 이미 작성한 배열을 베이스로 List를 작성하는것도 가능하다.
+
+```
+List<Integer> integerList = Arrays.asList(1, 62, 31, 1, 53, 31);
+```
+
+단 asList 메서드를 사용해서 List를 작성한 경우, 작성한 List에 대해 요소의 추가, 변경, 삭제를 할 수 없다.
+
+Arrays 클래스의 asList 메서드로 작성한 클래스는 일반적인 ArrayList와 약간 달라서 읽기 전용의 List 구현이기 때문이다.
+
+요소를 열거해서 작성한 List의 내용을 변경하고 싶은 경우에는 다음과 같이 List 클래스를 new 할때에 인수를 건넨다.
+
+```
+List<Integer> integerList = new ArrayList<>(Arrays.asList(1,63,43,23,3));
+```
+
+## List 정렬하기
+
+List를 정렬하기 위해서는 java.util.Collections 클래스의 sort 메서드를 이용한다. 배열의 정렬에서 사용한 Arrays 클래스의 sort 메서드와 똑같은 처리를 하는 메서드다.
+
+다음의 소스코드는 Collections.sort 메서드를 이용한 정렬 처리이다.
+
+```
+List<Integer> list = new ArrayList<>();
+list.add(3);
+list.add(1);
+list.add(13);
+list.add(2);
+
+Comparator<Integer> c = new Comparator<Integer>() {
+    @Override
+    public int compare(Integer o1, Integer o2) {
+        return o2.compareTo(o1);
+    }
+}
+
+Collections.sort(list, c);
+System.out.println(list);
+```
+
+
+List를 검색하기 위해서는 Collections 클래스의 binarySearch 메서드를 이용한다. 
+
+```
+List<Integer> values = Arrays.asList(1, 1, 4, 5, 7, 8, 11, 12, 17, 21, 24);
+
+int found = Collections.binarySearch(values, 5);
+System.out.println(found)
+
+int notFound = Collections.binarySearch(values, 6);
+System.out.println(notFound)
+```
+
 ## ref
 - https://jamesdreaming.tistory.com/137
 - https://icarus8050.tistory.com/10
