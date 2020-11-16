@@ -1298,12 +1298,73 @@ for-each를 사용한 리스트와 iterator를 사용한 리스트를 서로 비
 
 ```java
 class Student {
+    private Stirng name;
+    private int score;
 
+    public Student(String name, int score) {
+        this.name = name;
+        this.score = score;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getScore() {
+        return score;
+    }
 }
 ```
 
+```java
+List<Student> student = new ArrayList<>();
+students.add(new Student("Ken", 100));
+students.add(new Student("Shin", 60));
+students.add(new Student("Kim", 80));
+
+Iterator<Student> iterator = students.iterator();
+while (iterator.hasNext()) {
+    Student student = iterator.next();
+    if (student.getScore() < 70) {
+        iterator.remove()           //점수가 70점 미만인 사람은 리스트에서 삭제
+    }
+}
+
+for (Student student : students) {
+    System.out.println(student.getName() + ":" + student.getScore());
+}
+```
+
+**ArrayList와 LinkedList 클래스의 비교**
+
+LinkedList와 ArrayList는 모두 Java에서 제공하는 List 인터페이스를 구현한 Collection 구현체이다.
+
+하지만 인터페이스만 같을 뿐 내부적으로 동작하는 방식은 다르다.
+
+Java에서는 기본형 (Privitive Types) 또는 인스턴스(Reference Type)을 저장하기 위해 보통 배열을 사욯나다.
+
+하지만 배열의 초기 길이를 지정해야 하며 생성된 배열의 길이는 동적으로 변경할 수 없다는 점 때문에 상황에 맞게 사용해야한다.
+
+java의 초기 버전인 1.0에서는 이러한 문제를 해소하기 위해 주로 Vector를 사용하려고 했다. 하지만 Vector 역시 인스턴스 생성시에 capacity가 디폴트로 10개 정해져 리스트의 개수가 capacity 이상이 되면 두 배씩 늘려 나아가는 전략을 택하고 있다.
+
+java 1.2 이후 부터는 호환성을 위해 제공하는 정도이며 List 인터페이스를 구현한 리스트로 대체하여 사용하고 있다.
+
+**ArrayList**
+
+ArrayList는 내부적으로 데이터를 배열에서 관리하며 데이터의 추가, 삭제를 위해 임식 배열을 생성해 데이터를 복사 하는 방법을 사용하고 있다.
+
+대량의 자룔르 추가/삭제 하는 경우에는 그만큼 데이터의 복사가 많이 일어나게 되어 성능 저하를 일으킬 수 있다. 
+
+반면 각 데이터는 인덱스를 가지고 있기 때문에 한번에 참조가 가능해 데이터 검색에는 유리한 구현체이다.
+
+**LinkedList**
+
+LinkedList는 데이터를 저장하는 각 노드가 이전 노드와 다음 노드의 상태만 알고 있다고 보면된다.
+
+ArrayList와 같이 데이터의 추가, 삭제시 불필요한 데이터의 복사가 없어 데이터의 추가, 삭제시에 유리한 반면 데이터의 검색시에는 처음부터 노드를 순회해야 하기 때문에 성능상 불리하다. 
 
 ## ref
+- https://www.holaxprogramming.com/2014/02/12/java-list-interface/
 - https://jamesdreaming.tistory.com/137
 - https://icarus8050.tistory.com/10
 - https://programmingnote.tistory.com/29
