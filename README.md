@@ -1226,7 +1226,7 @@ Arrays 클래스의 asList 메서드로 작성한 클래스는 일반적인 Arra
 List<Integer> integerList = new ArrayList<>(Arrays.asList(1,63,43,23,3));
 ```
 
-## List 정렬하기
+**List 정렬하기**
 
 List를 정렬하기 위해서는 java.util.Collections 클래스의 sort 메서드를 이용한다. 배열의 정렬에서 사용한 Arrays 클래스의 sort 메서드와 똑같은 처리를 하는 메서드다.
 
@@ -1261,6 +1261,19 @@ System.out.println(found)
 
 int notFound = Collections.binarySearch(values, 6);
 System.out.println(notFound)
+```
+
+**List의 반복자**
+
+```
+List<String> list = new ArrayList<>();
+list.add("a");
+list.add("b");
+list.add("c");
+
+for (String element : list){
+    System.out.println(element);
+}
 ```
 
 ## ref
