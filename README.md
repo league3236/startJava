@@ -1370,6 +1370,11 @@ ArrayList와 같이 데이터의 추가, 삭제시 불필요한 데이터의 복
 - 복수의 스레드에서 동시에 액세스 한다.
   -> CopyonWriteArrayList
 
+## Map 인터페이스
+
+Map 인터페이스는 키와 값의 조합으로 값을 취급한다. List 인터페이스의 경우는 값의 추가는 add 메서드에 값만을 건넸지만, Map 인터페이스의 경우는 값의 추가는 'put' 메서드를 사용하여 키와 값을 동시에 건넨다. 또한 값의 삭제는 키를 지정하여 실시한다.
+
+
 
 ## ref
 - https://www.holaxprogramming.com/2014/02/12/java-list-interface/
