@@ -1276,6 +1276,33 @@ for (String element : list){
 }
 ```
 
+동일하게 반복 처리를 실시하는 방법으로 Iterator 인터페이스 라는것이 있다.
+List 인터페이스의 iterator 메서드를 실행함으로써 이 Iterator 인터페이스를 취득할 수 있다.
+
+- 다음 요소가 있는지를 확인하는 hasNext 메서드
+- 다음 요소를 실제로 취득하는 next 메서드
+
+```java
+List<String> list = new ArrayList<>();
+list.add("a");
+list.add("b");
+list.add("c");
+
+for(Iterator iterator = list.iterator(); iterator.hasNext();){
+    String element = iterator.next();
+    System.out.println(element);
+}
+```
+
+for-each를 사용한 리스트와 iterator를 사용한 리스트를 서로 비교하면, for-each 문을 사용하는 편이 간단하므로 반복자인 iterator를 사용하지 않아도 될 것처럼 보인다. 그러나 반복자인 iterator요소를 삭제하는 메서드가 준비되어 있어 반복 처리를 하면서 컬렉션으로부터 요소를 삭제할 수있다.
+
+```java
+class Student {
+
+}
+```
+
+
 ## ref
 - https://jamesdreaming.tistory.com/137
 - https://icarus8050.tistory.com/10
