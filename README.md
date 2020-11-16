@@ -1419,7 +1419,36 @@ public class MapTest {
 - 그 외의 경우
   -> HashMap
 
-  
+## Set 
+
+Set 인터페이스는 값의 집합을 취급할 수 있는 인터페이스이다. List 인터페이스와 동일하게 요소를 추가하는 `add` 메서드가 준비되어 있는데 요소를 취득하는 `get` 메서드는 존재하지 않는다.
+또한 값의 집합을 취급하는 인터페이스이기 때문에 특정의 요소를 취득할 수 없다.
+
+**Set 초기화**
+
+```
+Set<Integer> integerSet = new HashSet<>();
+```
+
+**컬렉션을 Set으로 변환하기**
+
+생성자의 인수로 컬렉션을 건네고 컬렉션을 Set으로 변환한다.
+
+```
+List<Integer> integerList = new ArrayList<>();
+Set<Integer> integerSet = new HashSet<>(integerList)
+```
+
+변환하려는 컬렉션의 요소에 중복 요소가 존재하는 경우는 중복이 제외된 후 Set으로 변환된다.
+
+```
+List<Integer> integerList = Arrays.asList(1, 62, 31, 1, 54, 31);
+System.out.println("List : " + integerList);
+
+Set<Integer> integerSet = new HashSet<>(integerList);
+System.out.println("Set : " + integerSet)
+```
+
 
 ## 갑자기 궁금해 져서 혼자 다시 정리한 내용(위에 내용 중복될 수 있음)
 
