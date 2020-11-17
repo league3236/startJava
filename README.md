@@ -1458,6 +1458,33 @@ System.out.println("Set : " + integerSet)
 `integer`는 Wrapper 클래스(객체) unboxing하지 않으면 산술 연산이 불가능하지만, null값을 처리 가능
 null 값 처리가 용이하기 때문에 SQL과 연동할 경우 처리가 용이하다.
 
+## StreamAPI
+
+자바 8에서는 자바의 문법을 크게 변화시킬 새로운 기능이 도입되었다. 하나는 람다식이고 다른 하나는 Stream API다.
+StreamAPI는 대량 데이터를 연속 처리하는 `스트림 처리`를 효율적으로 기술하기 위한 수단으로 도입되었다.
+단, 대량 데이터가 아니더라도 컬렉션의 조작을 효율적으로 실시할 수 있으므로 자주 이용되고 있다.
+
+
+```java
+List<Student> students = new ArrayList<>();
+students.add(new Student("Haeun", 100));
+students.add(new Student("league", 60));
+students.add(new Student("cat", 80));
+
+students.stream()                   // `작성`. Stream 인스턴스를 생성한다.
+    .filter(s->s.getScore() >= 70)              // `중간 작업`
+    .forEach(s->System.out.println(s.getName())); // `종료 작업`. 이름을 표시
+```
+
+결과와 같이 소스 코드의 행수가 줄어든 뿐만 아니라 어떠한 처리를 실시하고 싶은지 쉽게 알 수 있게 되어있다.
+
+## 람다식
+
+Stream을 알기위해서는 람다식에 대해서 배울 필요성이 있다.
+라다식은 메서드의 인수 등에 처리 그 자체를 건네는것이 가능한 강력한 기법이다.
+
+
+
 ## ref
 - https://www.holaxprogramming.com/2014/02/12/java-list-interface/
 - https://jamesdreaming.tistory.com/137
