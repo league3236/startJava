@@ -1613,6 +1613,9 @@ froups.stream()
     .forEach(s -> System.out.prinln(s.getName() + " " + s.getScore))
 ```
 
+- 반복 처리를 실시하는 종료 작업 : forEach 메서드 사용
+- 결과를 정리해서 추출하는 종료 작업 : collect, toArray, reduce
+
 
 
 ## ref
