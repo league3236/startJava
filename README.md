@@ -1592,9 +1592,31 @@ Stream<Integer> stream = students.stream()
 stream.forEach(System.out::println);
 ```
 
+**map과 flatmap 차이**
+
+map 메서드만 사용한 경우
+
+```java
+List<Student> allStudents = new ArrayList<>();
+groups.stream().forEach(g -> allStudents.addAll(g.getStudents()));
+allStudents.stream()
+    .sorted((s1, s2) -> s2.getScore() - s1.getScore())
+    .forEach(s -> System.out.println(s.getName() + " " s.getScore()));
+```
+
+flatMap 메서드를 사용한 경우
+
+```java
+froups.stream()
+    .flatMap(g -> g.getStudents().stream())
+    .sorted((s1, s2) -> s2.getScore() - s1.getScore())
+    .forEach(s -> System.out.prinln(s.getName() + " " + s.getScore))
+```
+
 
 
 ## ref
+- https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
 - https://www.holaxprogramming.com/2014/02/12/java-list-interface/
 - https://jamesdreaming.tistory.com/137
 - https://icarus8050.tistory.com/10
