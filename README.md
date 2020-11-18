@@ -1484,6 +1484,81 @@ Stream을 알기위해서는 람다식에 대해서 배울 필요성이 있다.
 람다식은 메서드의 인수 등에 처리 그 자체를 건네는것이 가능한 강력한 기법이다.
 
 
+```java
+List<Student> studentList = new ArrayList<>();
+studentList.add(new Student("Jung", 100));
+studentList.add(new Student("Song", 70));
+studentList.add(new Student("Tommy", 80));
+
+System.out.println(studentList);
+
+Collections.sort(studentList, (student1, student2) -> Integer.compare(student1.getscore(), student2.getScore()));
+
+System.out.println(studentList);
+```
+
+**함수형 인터페이스**
+
+자바8에서는 구현해야 할 메서드가 하나밖에 없는 인터페이스를 `함수형 인터페이스`라는 이름으로 취급할 수 잇다. 람다식은 이 함수형 인터페이스 대신 사용할 수 있는것이다.
+
+```java
+Student[] students = {
+    new Student("Ken", 100),
+    new Student("Shin", 60),
+    new Student("Kim", 80)
+}
+
+Arrays.sort(students, (Student o1, Student o2) ->
+Integer.compare(o2.getScore(), o1.getScore()));
+
+Arrays.stream(students).forEach(s ->
+System.out.println(s.getName() + ":" + s.getScore()));
+```
+
+**람다식의 기본 문법**
+
+```
+( 인수 ) -> { 처리 }
+```
+
+인수 부분은 메서드 정의의 인수 부분과 동일하게 작성한다. 예를 들어, 앞의 Comparator <Student> 클래스의 compare 메서드는 다음과 같이 선언
+
+```java
+compare(Student o1, Student o2)
+```
+
+이에 대응하는 람다식과 같다.
+
+```java
+(Student student1, Student student2) -> {
+    return Integer.compare(student1.getScore(), student2.getScore());
+}
+```
+
+해당 코드를 짧게 줄일 수 있다.
+
+```java
+(student1, student2) -> {
+    return Integer.compare(student1.getscore(), student2.getscore())
+}
+```
+
+**메서드 참조**
+
+자바 8에서는 이미 준비되어 있는 메서드 그 자체를 대입할 수 있다.
+
+```java
+List<String> list = Arrays.asList("Xxx", "Yyyyy", "Zzzz");
+list.forEasch(System.out::println);
+```
+
+**숫자 범위로 Stream 작성**
+
+```java
+IntStream stream = IntStream.range(1, 5);
+Stream.forEach(System.out::print);
+```
+
 
 ## ref
 - https://www.holaxprogramming.com/2014/02/12/java-list-interface/
