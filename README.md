@@ -1552,12 +1552,46 @@ List<String> list = Arrays.asList("Xxx", "Yyyyy", "Zzzz");
 list.forEasch(System.out::println);
 ```
 
-**숫자 범위로 Stream 작성**
+**숫자 범위로 Stream 작성** 
 
 ```java
-IntStream stream = IntStream.range(1, 5);
+IntStream stream = IntStream.range(1, 5);           // range 메서드는 맨 마지막 값을 포함하지 않음
 Stream.forEach(System.out::print);
 ```
+
+```java
+IntStream stream = IntStream.rangeClosed(1, 5);         // rangeClosed 메서드는 맨 마지막 값을 포함한다.
+Stream.forEach(System.out:print);
+```
+
+
+for문을 사용한 처리
+```
+for (int i=0; i < count; i++) {
+    // 처리
+}
+```
+
+IntStream을 사용한 처리
+
+```
+IntStream.range(0, count).forEach( i -> {
+    //처리
+});
+```
+
+Student 객체의 Stream으로부터 score의 값을 추출하는 코드
+```
+List<Student> students = new ArrayList<>();
+students.add(new Student("Ken", 100));
+students.add(new Student("Shin", 60));
+students.add(new Student("Tommy", 80));
+
+Stream<Integer> stream = students.stream()
+    .map(s -> s.getScore());
+stream.forEach(System.out::println);
+```
+
 
 
 ## ref
