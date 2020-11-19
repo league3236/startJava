@@ -1692,6 +1692,92 @@ catch 블록도, throws 절도 기술하지 않은 경우 발생한 실행 시 �
 
 그런 상태에서 애플리케이션이 침묵하고 있는 최악의 사태라고 할 수 있기 때문에 신속하게 종료해야 하는 것 이다.
 
+**예외 처리의 세 가지 구문 제대로 사용하기**
+
+1. try-catch-finally
+
+``` java
+try {
+    // SomeException 예외가 발생하는 코드를 포함하는 처리
+} catch (SomeException ex) {
+    // SomeException 예외를 catch한 경우의 처리
+} finally {
+   // try-catch 블록을 종료할 때에 반드시 실행해야 하는 처리
+}
+```
+
+```java
+
+// try-catch 블록을 가로질러 사용하는 변수의 선언
+byte[] contents = new byte[100];
+InputStream is = null;
+
+try {
+    // 예외가 발생하는 코드를 포함하는 처리 
+    is = Files.newInputStream(path);
+    is.read(contents);
+} catch (IOException ex) {
+    // 예외를 포착한 경우의 처리
+} finally {
+    // try-catch 블록을 종료하기 전에 반드시 실행
+    if (is != null) {
+        is.close();
+    }
+}
+
+```
+
+fially 블록은 스트림이나 데이터베이스 접속처럼 사용 후에 반드시 해제해야 하는 리소스의 객체를 사용할 경우에 자주 이용된다.
+우선 finally 블록을 사용하지 않는 경우를 살펴 보자. 예를들어 다음과 같은 경우는 리소스의 해제를 빼먹는 일이 발생.
+
+2. try-with-resources
+finally 블록의 작성법은 중복으로 리소스를 여러개 사용하는 try-catch 블록에서는 중복이 배로 증가하여 상당히 귀찮다.
+그래서 자바 7부터 도입된 것이 try-with-resources 구문이다.
+
+```java
+try (InputStream is = Files.newInputStream(path)) {
+    is.read(contents);
+    // contents에 대한 처리
+} catch (IOException ex) {
+    // 예외를 포착한 경우의 처리
+}
+```
+
+자바 7부터 InputStream 등의 리소스를 취급하는 클래스는 java.lang.AutoClosable 인터페이스 또는 java.io.Closable 인터페이스를 구현하도록 되었다.
+그리고 try 블록의 시작 시 (try (...)으로 작성한 ... 부분)에 AutoClosable 인터페이스의 구현 클래스를 선언해두면 해당 try~catch 블로의 종료 시의 처리에서 실시할 close 메서드를 자동으로 호출하게 된다.
+
+3. 다중 캐치
+
+try 블록안에서 한 종류의 예외만 발생한다고 가정했다.
+
+그러나 실제 업무에서 프로그램을 만들려고 하면 try 블록 안에서 여러 예외가 발생하는 경우도 많다.
+예를 들어 데이터베이스에 액세스 하는 처리와 파일을 읽어들이는 처리를 순서대로 실시하는 경우에는 각각의 처리에서 예외가 발생한다.
+
+```java
+try {
+    Class<?> clazz = Class.forName(className);
+    SomeClass objSomeClass = clazz.newInstance();
+} catch (ClassNotFoundException ex) {
+} catch (InstantiationException ex) {
+} catch (IllegalAccessException ex) {
+}
+```
+
+각각의 예외에 상응하는 처리를 하고 싶은 경우도 있을 것이다. 하지만 대부분의 경우 로그를 출력하고 상위로 예외를 발생시키든지, 처리를 중지시키게 된다.
+귀찮다고 해서 Exception으로 포착해서는 안된다.
+
+복수의 예외에서 동일 처리를하고 싶은 경우 자바 7에서 도입된 `다중 캐치`를 이용하면 복잡한 catch 블록의 기술을좀 더 편하게 할 수 있다.
+
+```java
+try {
+    Class<?> clazz = Class.forName(className);
+    SomeClass objSomeClss = clazz.newInstance();
+} catch (ClassNotFoundException |
+          InstantiationException |
+          IllegalAccessException ex) {
+}
+``` 
+
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
 - https://www.holaxprogramming.com/2014/02/12/java-list-interface/
