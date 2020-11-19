@@ -1778,6 +1778,23 @@ try {
 }
 ``` 
 
+
+예외는 catch 블록으로 포착하고, throw 하지 않아도 컴파일 오류가 안되는 코드는 다음과 같이 로그로 출력한다.
+
+```JAVA
+
+// Logger log = ...
+
+String strValue = "abc";
+
+try {
+    int intValue= Integer.valueOf(strValue);
+    System.out.println("intValue is " + intValue);
+} catch (NumberFormatException ex) {
+    log.warn("숫자가 아닙니다." + ex);
+}
+```
+
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
 - https://www.holaxprogramming.com/2014/02/12/java-list-interface/
