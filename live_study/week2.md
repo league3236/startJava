@@ -39,3 +39,9 @@ https://league-cat.tistory.com/411
 https://league-cat.tistory.com/412
 
 **1차 및 2차 배열 선언하기**
+
+https://league-cat.tistory.com/413
+
+**타입 추론, var**
+
+
