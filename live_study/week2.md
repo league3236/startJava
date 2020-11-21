@@ -28,4 +28,8 @@ https://league-cat.tistory.com/409
 
 **변수 선언 및 초기화하는 방법**
 
+https://league-cat.tistory.com/410
+
+**변수의 스코프와 라이프타임**
+
 
