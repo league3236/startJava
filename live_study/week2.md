@@ -24,6 +24,8 @@ https://league-cat.tistory.com/408
 
 **리터럴**
 
+https://league-cat.tistory.com/409
 
+**변수 선언 및 초기화하는 방법**
 
 
