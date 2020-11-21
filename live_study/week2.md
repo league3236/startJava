@@ -36,4 +36,6 @@ https://league-cat.tistory.com/411
 
 **타입 변환, 캐스팅 그리고 타입 프로모션**
 
+https://league-cat.tistory.com/412
 
+**1차 및 2차 배열 선언하기**
