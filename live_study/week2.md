@@ -44,4 +44,4 @@ https://league-cat.tistory.com/413
 
 **타입 추론, var**
 
-
+https://league-cat.tistory.com/414
