@@ -20,5 +20,10 @@ https://league-cat.tistory.com/407
 
 **프리미티브 타입과 레퍼런스 타입**
 
+https://league-cat.tistory.com/408
+
+**리터럴**
+
+
 
 
