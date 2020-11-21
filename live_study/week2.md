@@ -32,4 +32,8 @@ https://league-cat.tistory.com/410
 
 **변수의 스코프와 라이프타임**
 
+https://league-cat.tistory.com/411
+
+**타입 변환, 캐스팅 그리고 타입 프로모션**
+
 
