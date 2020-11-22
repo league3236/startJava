@@ -1690,6 +1690,34 @@ System.out.println(message.toStirng());
 
 ```
 
+join 메서드 활용
+
+인수 1에는 연결에 사용하는 문자, 인수 2에는 문자열의 리스트를 설정
+
+```java
+List<String> stirngList = new ArrayList<>();
+stirngList.add("This");
+stringList.add("is");
+stringList.add("a");
+stringList.add("pen.");
+
+String message = String.join(" ", stringList);
+
+System.out.prinln(message);
+```
+
+```
+This is a pen.
+```
+
+join 메서드 의 다른 사용법
+인수 1에 연결에 사용하는 문자, 인수 2 이후에는 연결하고 싶은 문자열을 열거하는 것도 가능
+
+```java
+Stirng message = String.join(".", "www", "jpub", "co", "kr");
+System.out.println(message);
+```
+
 
 
 
