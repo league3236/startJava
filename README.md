@@ -1629,6 +1629,186 @@ List<String> newList = list.stream()
 newList.forEach(System.out::println)
 ```
 
+
+
+작성한 프로그램에 `기대하지 않은 동작`이 발생한 것을 `예외`라고 한다.
+
+자바에서는 예외를 크게 세가지 종류로 나눌 수 있다.
+
+1. 검사 예외 (Exception)
+
+주로 프로그램 작성 시에 예상할 수 잇는 비정상 상태를 통지하기 위해서 사용한다. 예를 들어 파일에서 데이터를 입출력하는 처리에서 파일을 읽고 쓸 수 없는 경우가 있는데
+이때는 java.io.IOException 예외가 발생한다. 검사 예외를 사용하면 예상되는 비정상 상태에 대응하는 처리가 있는지 컴파일 시에 체크할 수 있기 때문에 견고한 애플리케이션을 만들 수 있다.
+검사 예외는 프로그램에서 포착(catch)해서 처리하거나, 상위의 호출원에 대해 예외를 발생시키는(throw)것이 필수다.
+
+2. 실행 시 예외 (RuntimeException)
+
+주로 프로그램 작성 시에 예상할 수 없는 오류를 통지하기 위해서 사용한다.
+`예상할 수 없는 오류`에는 흔히 있는 버그나 설정 누락이 포함되어있다. 검사 예외와는 달리 프로그램에서 포착하지 않아도 컴파일 오류가 발생하지 않는다.
+
+포착하지 않는 경우 무조건 호출원에서 발생하게 된다. 예를 들어 Integer 클래스의 parseInt 메서드를 호출할 때 정수로 변환할 수 없는 문자열을 인수로 지정하면
+java.langNumberFormatException이 발생한다. 그러나 Integer 클래스의 parseInt 메서드는 String 객체를 int 타입으로 변환하기 위한 API 이므로 정수로 변환할 수 없는 문자열을 인수로 지정하는 것은 예상 외의 이용 방법이다.
+
+따라서 일반적으로 호출원에서 예외를 포착할 필요가 없다. 이러한 예외를 모두 검사 예외와 마찬가지로 반드시 포착해야 한다면 프로그래밍 복잡하기 어렵게 된다.
+
+이러한 이유로 실행 시 예외를 이용함으로써 예상치 못한 동작에 의해 비정상 상태가 발생하는 경우에도 불필요하게 호출원에 예외를 포착시킬 필요가 업섹 되었다.
+
+`2장 기본적인 작성법 익히기`의 예제 프로그램에서 다루었듯이 숫자를 0으로 나누는 경우에 발생하는 java.lang.ArithmeticException도 바로 실행 시 예외에 해당된다.
+
+3. 오류 (Error)
+
+예외와는 달리 시스템의 동작을 계속할 수 없는 `치명적 오류`를 나타낸다. 거의 대부분의 경우 이 `치명적 오류`는 프로그램에서 포착해야 하는 것이 아니다.
+
+**예외를 나타내는 세 가지 클래스**
+
+1. java.lang.Exception 클래스
+
+검사 예외를 나타내는 클래스다. 이 클래스를 계승한 예외의 예로는 다음과 같은 것이 있다.
+
+- 파일이나 네트워크 등의 입출력 중에 발생한 에러를 나타내는 java.io.IOException 클래스
+- 데이터베이스 액세스 중에 발생한 에러를 나타내는 java.sqlSQLException 클래스
+
+이 클래스를 계승한 예외는 프로그램 안에서 포착할 수 있는데, 발생하는 메서드의 시그니처에 throws 절을 기술할 필요가 있다. 
+예를 들면 다음에 나타내는 고드에서는 readFile 메서드의 호출에서 IOException이 발생할 가능성이 있음을 명시적으로 알 수 있다.
+
+```
+public List<String> readFile() throws IOException {
+	// 파일을 읽어들이는 처리
+}
+```
+
+이런 예외 처리의 메커니즘은 실수가 발생하기 어려운 반면 강제적으로 try~catch 블록이 필요하게 되어 프로그램이 길어진다는 점에서 찬반 여론이 있는 것도 사실이다.
+
+2. java.lang.RuntimeException 클래스
+
+실행 시 예외를 나타내는 클래스다.
+
+해당 클래스를 계승한 예외는 프로그램 안에서 반드시 포착할 필요도 없고, 메서드의 시그니처에 throws 절을 기술할 필요도 없다.
+catch 블록도, throws 절도 기술하지 않은 경우 발생한 실행 시 예외는 호출원에 자동적으로 전파된다. 
+그렇다면 실행시 예외를 어디서도 포착하지 않은 경우는 어떻게 될까?
+
+해답은 `그 스레드가 종료해 버린다`이다. 스레드를 시작한 처리 자체에는 예외가 전파되지 않는다. 실제로 스레드를 시작하고 있는것은 Java VM이다.
+
+그 결과 Java VM에 예외가 도달한 시점에 그 스레드는 종료해 버린다. 스레드가 JavaVM의 메인 스레드인 경우는 애플리케이션 자체가 종료한다.
+
+3. java.lang.Error 클래스
+
+`일반적인 애플리케이션에서는 포착해서는 안 되는 중대한 문제`를 나타내는 클래스다. 자바의 예외 메커니즘의 관점에서 볼 때 Error는 RuntimeException과 비슷하여 catch 블록도, throws 절도 기술할 필요가 없다.
+
+그러나 그 의미는 RuntimeException과는 크게 다르다. 위에 언급한 대로 Error는 `포착해야 할 것이 아닌` 것이다.
+
+왜냐하면 Error가 발생하는 상황은 대부분의 경우 애플리케이션이 비정상의 상태에 빠져 있어 신속하게 프로그램을 종료시켜야 하는 상황이기 때문이다.
+
+예를들어 유명한 Error 중에 하나로 java.lang.OutOfMemoryError 클래스가 있다.
+
+이것은 자바가 사용하는 메모리가 부족하거나 할 때 발생한다. 이 오류가 발생한 경우는 로그 출력 조차도 할 수 없는 상태라고 생각할 수 있다.
+
+그런 상태에서 애플리케이션이 침묵하고 있는 최악의 사태라고 할 수 있기 때문에 신속하게 종료해야 하는 것 이다.
+
+**예외 처리의 세 가지 구문 제대로 사용하기**
+
+1. try-catch-finally
+
+``` java
+try {
+    // SomeException 예외가 발생하는 코드를 포함하는 처리
+} catch (SomeException ex) {
+    // SomeException 예외를 catch한 경우의 처리
+} finally {
+   // try-catch 블록을 종료할 때에 반드시 실행해야 하는 처리
+}
+```
+
+```java
+
+// try-catch 블록을 가로질러 사용하는 변수의 선언
+byte[] contents = new byte[100];
+InputStream is = null;
+
+try {
+    // 예외가 발생하는 코드를 포함하는 처리 
+    is = Files.newInputStream(path);
+    is.read(contents);
+} catch (IOException ex) {
+    // 예외를 포착한 경우의 처리
+} finally {
+    // try-catch 블록을 종료하기 전에 반드시 실행
+    if (is != null) {
+        is.close();
+    }
+}
+
+```
+
+fially 블록은 스트림이나 데이터베이스 접속처럼 사용 후에 반드시 해제해야 하는 리소스의 객체를 사용할 경우에 자주 이용된다.
+우선 finally 블록을 사용하지 않는 경우를 살펴 보자. 예를들어 다음과 같은 경우는 리소스의 해제를 빼먹는 일이 발생.
+
+2. try-with-resources
+finally 블록의 작성법은 중복으로 리소스를 여러개 사용하는 try-catch 블록에서는 중복이 배로 증가하여 상당히 귀찮다.
+그래서 자바 7부터 도입된 것이 try-with-resources 구문이다.
+
+```java
+try (InputStream is = Files.newInputStream(path)) {
+    is.read(contents);
+    // contents에 대한 처리
+} catch (IOException ex) {
+    // 예외를 포착한 경우의 처리
+}
+```
+
+자바 7부터 InputStream 등의 리소스를 취급하는 클래스는 java.lang.AutoClosable 인터페이스 또는 java.io.Closable 인터페이스를 구현하도록 되었다.
+그리고 try 블록의 시작 시 (try (...)으로 작성한 ... 부분)에 AutoClosable 인터페이스의 구현 클래스를 선언해두면 해당 try~catch 블로의 종료 시의 처리에서 실시할 close 메서드를 자동으로 호출하게 된다.
+
+3. 다중 캐치
+
+try 블록안에서 한 종류의 예외만 발생한다고 가정했다.
+
+그러나 실제 업무에서 프로그램을 만들려고 하면 try 블록 안에서 여러 예외가 발생하는 경우도 많다.
+예를 들어 데이터베이스에 액세스 하는 처리와 파일을 읽어들이는 처리를 순서대로 실시하는 경우에는 각각의 처리에서 예외가 발생한다.
+
+```java
+try {
+    Class<?> clazz = Class.forName(className);
+    SomeClass objSomeClass = clazz.newInstance();
+} catch (ClassNotFoundException ex) {
+} catch (InstantiationException ex) {
+} catch (IllegalAccessException ex) {
+}
+```
+
+각각의 예외에 상응하는 처리를 하고 싶은 경우도 있을 것이다. 하지만 대부분의 경우 로그를 출력하고 상위로 예외를 발생시키든지, 처리를 중지시키게 된다.
+귀찮다고 해서 Exception으로 포착해서는 안된다.
+
+복수의 예외에서 동일 처리를하고 싶은 경우 자바 7에서 도입된 `다중 캐치`를 이용하면 복잡한 catch 블록의 기술을좀 더 편하게 할 수 있다.
+
+```java
+try {
+    Class<?> clazz = Class.forName(className);
+    SomeClass objSomeClss = clazz.newInstance();
+} catch (ClassNotFoundException |
+          InstantiationException |
+          IllegalAccessException ex) {
+}
+``` 
+
+
+예외는 catch 블록으로 포착하고, throw 하지 않아도 컴파일 오류가 안되는 코드는 다음과 같이 로그로 출력한다.
+
+```JAVA
+
+// Logger log = ...
+
+String strValue = "abc";
+
+try {
+    int intValue= Integer.valueOf(strValue);
+    System.out.println("intValue is " + intValue);
+} catch (NumberFormatException ex) {
+    log.warn("숫자가 아닙니다." + ex);
+}
+```
+
+
 ## StringBuilder
 
 StringBuilder를 사용하면 문자열을 결합하는 for문이 있을때 처리시간이 압도적으로 빠르다.
@@ -1717,8 +1897,6 @@ join 메서드 의 다른 사용법
 Stirng message = String.join(".", "www", "jpub", "co", "kr");
 System.out.println(message);
 ```
-
-
 
 
 ## ref
