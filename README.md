@@ -1616,6 +1616,58 @@ froups.stream()
 - 반복 처리를 실시하는 종료 작업 : forEach 메서드 사용
 - 결과를 정리해서 추출하는 종료 작업 : collect, toArray, reduce
 
+StreamAPI 중에서도 map, filter, collect는 매우 이용 빈도가 높기 때문에 처음부터 기억해야할 메서드라고 말할 수 있다.
+
+```java
+List<String> list = Arrays.asList("HaeunJung", "Shin", "ShinJung");
+
+List<String> newList = list.stream()
+    .filter(p -> p.length() > 5)
+    .map(p -> "[" + p + "]")
+    .collect(Collectors.toList());
+
+newList.forEach(System.out::println)
+```
+
+## StringBuilder
+
+StringBuilder를 사용하면 문자열을 결합하는 for문이 있을때 처리시간이 압도적으로 빠르다.
+
+```java
+StringBuilder builder = new StringBuilder();
+for (int i = 0; i < LOOP_COUNT; i++) {
+    builder.append("a");
+}
+```
+
+StringBuilder 클래스에서도 문자열을 배열로 보유하고 있지만 StringBuilder 클래스에서는 미리 여유 있는 크기의 배열을 확보하고 있기 때문에 append 메서드에 의한 문자열 추가에서 매번 새로운 배열을 만드는 일은 없다. 혹, 배열의 크기가 부족해도 다시 여유 있는 크기로 확장된다. 따라서 메모리를 확보하는 횟수가 적어져 + 연산자와 concat 메서드보다도 빨라진다.
+
+- 로컬 변수 등 여러 스레드로부터 액세스되지 않는 경우 : String Builder 클래스를 사용한다.
+- 여러 스레드로부터 사용되는 경우 : StringBuffer 클래스를 사용한다.
+
+**문자열 분할하기**
+
+```java
+String sentence = "This is a pen.";
+Stirng[] words = sentence.split(" ");
+
+for (String word : words) {
+    Sytem.out.println(word);
+}
+```
+
+마침표(.)로 문자열을 구분
+
+```java
+Stirng url = "www.jpub.co.kr";
+String[] words = url.split("\\.");
+
+for (String word : words) {
+    System.out.println(word);
+}
+```
+
+
 
 
 ## ref
