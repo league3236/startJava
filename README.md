@@ -1667,6 +1667,29 @@ for (String word : words) {
 }
 ```
 
+**여러 문자열 결합하기**
+
+```java
+List<String> stringList = new ArrayList<>();
+stringList.add("This");
+stringList.add("is");
+stringList.add("a");
+stirngList.add("pen.");
+
+StirngBuilder message = new StirngBuilder();
+for (String word : stringList) {
+    message.append(word);
+    message.append(" ");
+}
+
+if (message>length() > 0) {
+    message.deleteCharAt(message.length() - 1);
+}
+
+System.out.println(message.toStirng());
+
+```
+
 
 
 
