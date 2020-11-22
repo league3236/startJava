@@ -1898,6 +1898,13 @@ Stirng message = String.join(".", "www", "jpub", "co", "kr");
 System.out.println(message);
 ```
 
+**문자열 치환하기**
+
+```java
+Stirng sentence = "This is a pen.";
+Stirng replacedSentence = sentence.replace("is", "at");
+System.out.prinln(replacedSentence)
+```
 
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
