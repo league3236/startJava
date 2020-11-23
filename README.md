@@ -1906,6 +1906,50 @@ Stirng replacedSentence = sentence.replace("is", "at");
 System.out.prinln(replacedSentence)
 ```
 
+**문자열 검색하기**
+
+- indexOf : 앞에서 검색
+- lastIndexOf : 뒤에서 부터 검색 
+
+## 정규 표현
+
+```java
+Pattern pattern = Pattern.compile("This is a .*\\.");
+
+String sentence = "This is a pen.";
+
+Matcher matcher = patter.matcher(sentence);
+
+if (matcher.matches()){
+    System.out.println("적합하다");
+} else {
+    System.out.println("적합하지않다");
+}
+```
+
+**정규표현을 사용하여 문자열 치환하기**
+
+```java
+Pattern pattern = Pattern.compile("\\s+");
+
+String sentence = "This     is a pen.";
+
+Matcher matcher = pattern.matcher(sentence);
+
+System.out.println(matcher.replaceAll(" "));
+```
+
+String 클래스의 메서드로 정규 표현 사용하기
+
+String 클래스만으로도 정규표현식 사용이 가능하다.
+```java
+
+String sentence = "This         is a pen.";
+
+System.out.println("(1)");
+
+```
+
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
 - https://www.holaxprogramming.com/2014/02/12/java-list-interface/
