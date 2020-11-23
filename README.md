@@ -1947,7 +1947,16 @@ String 클래스만으로도 정규표현식 사용이 가능하다.
 String sentence = "This         is a pen.";
 
 System.out.println("(1)");
+System.out.println(sentence.matches);
 
+System.out.println("(2)");
+String[] words = sentence.split("\\s+");
+for (String word : words) {
+    System.out.println(word);
+}
+
+System.out.println("(3)");
+System.out.println(sentence.replaceAll("\\s+", " "));s
 ```
 
 ## ref
