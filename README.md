@@ -1942,7 +1942,7 @@ System.out.println(matcher.replaceAll(" "));
 String 클래스의 메서드로 정규 표현 사용하기
 
 String 클래스만으로도 정규표현식 사용이 가능하다.
-```java
+```jav
 
 String sentence = "This         is a pen.";
 
@@ -1957,6 +1957,61 @@ for (String word : words) {
 
 System.out.println("(3)");
 System.out.println(sentence.replaceAll("\\s+", " "));s
+```
+
+### 파일 조작
+
+파일은 프로그램에서 일반적인 리소스 중의 하나. 어느 정도의 규모를 가진 프로그래밍라면 대부분의 경우는 설정 파일을 읽어들일 필요가 있고, 사용자 및 외부 시스템에서 파일을 송수신하는 것도 적지 않음.
+
+**File 클래스의 객체 생성**
+
+```java
+File file1 = new File("C:/league/cat.txt");
+File file2 = new File("./cat.txt");
+```
+
+**File.separator 상수를 사용하면 OS 파일 구분자를 얻을 수 있음**
+
+```java
+System.out.println(File.separtator);
+```
+
+**이스케이프 문자**
+
+어떠한 문자의 다음 문자에 특별한 의미를 갖게 하는 문자
+
+
+#### Path 클래스
+
+자바 7 이후에는 java.nio.file.Path 클래스를 사용하여 파일을 조작하는 java.nio.file 패키지가 추가됨
+
+### 파일 읽고 쓰는 예제
+
+```java
+
+File file = new File("C:/work/sample.dat");
+
+InputStream is = null;
+
+try{
+    // 파일을 1문자씩 읽어서 표시
+    is = new FileInputStream(file);
+    for (int ch; (ch=is.read())!=-1;) {
+        System.out.print((char) ch);
+    }
+} catch (FileNotFoundException ex) {
+    System.err.println(ex);
+} catch (IOException ex) {
+    System.err.println(ex);
+} finally {
+    if (is != null) {
+        try {
+            is.close();
+        } catch (IOException ex) {
+             System.err.println(ex);
+        }
+    }
+}
 ```
 
 ## ref
