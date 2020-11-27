@@ -2102,6 +2102,47 @@ try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_
 }
 ```
 
+### Date와 Calendar
+
+프로그램 안에서 날짜와 시간을 취급하기 위한 클래스로 `java.util.Date` 클래스와 `java.util.Calendar` 클래스 두 종류가 존재하며 용도에 따라 구분해야 한다.
+
+또한 자바 8에서는 `Date and Time API`가 추가되어 날짜와 시간 조작이 더욱 쉬워졌다.
+
+```java
+Date now = new Date();
+System.out.println(now);
+
+Date date = new Date(5000);  // 1970년 1월 1일 오전0시 (GMT)로 부터 5,000밀리초 결과한 시간
+System.out.println(date)
+```
+
+## 기본형과 참조형
+
+**기본형의 값 전달**
+
+```java
+public class CallByValueSample {
+    public static void main(String[] args) {
+        int value = 1;
+        callByValue(value);
+        System.out.println("호출자:" + value);
+    }
+
+    public static void callByValue(int value) {
+        value++;
+        System.out.println("수신자:" + value);
+    }
+}
+```
+
+```
+수신자: 2
+호출자: 1
+```
+
+기본현의 값을 전달하는 경우는 수신자에서 값을 변경해도 호출자에 영향을 주지않는다.
+
+**참조형의 값 전달**
 
 
 ## ref
