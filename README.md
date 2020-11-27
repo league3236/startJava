@@ -2144,6 +2144,51 @@ public class CallByValueSample {
 
 **참조형의 값 전달**
 
+```java
+
+public class Entity {
+    public int value;
+}
+
+public class CallByReferenceSample {
+    public static void main(String... args) {
+        Entity entity = new Entity();
+        entity.value = 1;
+        callByReference(entity);
+        System.out.println("호출자:" + value);
+    } 
+
+    public static void callByReference(Entity entity) {
+        entity.value++;                
+        System.out.println("수신자:" + value);
+    }
+}
+```
+
+```
+수신자: 2
+호출자: 2
+```
+
+참조형은 객체에 대해 조작을 하기에 호출자에 반영된다.
+
+**불변 객체 클래스**
+
+값을 변경할 수 없는 클래스 
+
+- Integer 등의 래퍼 클래스
+- String 클래스
+- Date and Time API
+
+example
+
+```java
+String text1 = "This is an apple";
+Stirng text2 = text1.replace("apple", "orange");
+```
+
+text1의 값은 변하지 않는다.
+
 
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
