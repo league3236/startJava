@@ -2014,6 +2014,36 @@ try{
 }
 ```
 
+**path 클래스를 사용하여 바이너리 파일 읽기**
+
+```java
+
+Path path = Paths.get("C:/league/cat.dat");
+
+try (InputStream is = Files.newInputStream(path)) {
+    for (int ch; (ch = is.read()) != -1) {
+        System.out.print((char) ch);
+    }
+} catch (IOException ex) {
+    Sytem.err.println(ex);
+}
+
+```
+
+**path 클래스를 사용하여 텍스트 파일 읽기**
+
+```java
+Path path = Paths.get("C:/work/sample.txt");
+
+try (BufferedReader reader = Files.newBufferedReader (path, StandardCharsets.UTF_8)) {
+    for (Stirng line; (line = reader.readLine()) != null;) {
+        System.out.println(line);
+    }
+} catch (IOException ex) {
+    System.err.println(ex);
+}
+```
+
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
 - https://www.holaxprogramming.com/2014/02/12/java-list-interface/
