@@ -2044,6 +2044,66 @@ try (BufferedReader reader = Files.newBufferedReader (path, StandardCharsets.UTF
 }
 ```
 
+**텍스트 파일 기록하기**
+
+```java
+Path path = Paths.get("C:/work/sample.txt");
+
+try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
+    writer.append("test");
+    writer.newLine();
+    writer.append("test2");
+} catch (IOException ex) {
+    System.err.println(ex);
+}
+```
+
+**Stream API를 사용해서 파일 읽어오기**
+
+```
+Path path = Paths.get("C:/work/sample.txt");
+
+try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+    reader.lines();
+        .forEach(System.out::println);
+} catch (IOException ex) {
+    System.err.println(ex);
+}
+```
+
+#### 속성 파일 
+
+다른 시스템의 IP 주소나 로그인 사용자 이름 등의 접속 설정, 동작에 필요한 디렉터리와 파일의 경로 설정 등을 대체외 외부 정의화가 필요하다. 그 이유는 동작 환경에 따라 변겨오디는 일이 많기 때문
+
+- 메시지나 화면의 메뉴와 같은 문자열을 외부 정의화하여 변경하기 쉽게 하기
+- 시스템을 사용하는 국가의 언어 환경에 따라 문자열을 한국어, 영어 등 다른 언어로 전환하여 표시할 수 있도록 한다. 이것을 `국제화 대응`이라고 함
+
+예를 들어 mail의 속성파일은 다음과 같이 작성함
+
+vim ./mail.properties
+
+```txt
+system.mail.address = league3235@gmail.com
+system.mail.enable = true
+system.mail.errormessage=Cannot send email.
+```
+
+읽기
+
+```java
+Path path = Paths.get("mail.properties");
+try (BufferedReader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+    Properties properties = new Properties();
+    Properties.load(reader);
+
+    String address = properties.getProperty("system.mail.address");
+    Syste.out.println(address);
+} catch (IOException ex) {
+}
+```
+
+
+
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
 - https://www.holaxprogramming.com/2014/02/12/java-list-interface/
