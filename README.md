@@ -2172,7 +2172,7 @@ public class CallByReferenceSample {
 
 참조형은 객체에 대해 조작을 하기에 호출자에 반영된다.
 
-**불변 객체 클래스**
+**불변(immutable) 객체 클래스**
 
 값을 변경할 수 없는 클래스 
 
@@ -2189,6 +2189,26 @@ Stirng text2 = text1.replace("apple", "orange");
 
 text1의 값은 변하지 않는다.
 
+**값이 변하는(mutable) 클래스**
+
+- StringBuilder
+- AutomicInteger
+
+example
+```java
+StringBuilder text = new StringBuilder("This is ");
+text.append("an apple.");
+```
+
+```
+this is an apple
+```
+
+`immutable class`를 선호하는 이유는 안정감을 주기 때문이다.
+
+그러나 `immutable class`의 경우 객체가 대량으로 생성되기 때문에 속도에 영향을 준다.
+
+앞전에 설명했던 String과 StringBuilder의 속도차이는 이점으로 생기는 것이다.
 
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
