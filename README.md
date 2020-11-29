@@ -2222,7 +2222,15 @@ this is an apple
 |package private|동일 패키지의 클래스로부터 이용할 수 있다.|
 |private|자신의 클래스만 이용할 수 있다.|
 
+**public -> protecte -> package private -> private 순으로 사용 가능한 범위가 좁아져 간다.**
 
+좁은 가시성을 사용하는 이유는, 생각지도 못한 클래스에서 호출되지 않게 도와준다.
+
+- 원칙적으로 가장 범위가 좁은 가시성으로 한다.
+
+- 확장성을 높이기 위해 protected로 한다.
+
+- 테스트 용이성을 높이기 위해 protected하기
 
 
 
