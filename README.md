@@ -2285,6 +2285,27 @@ public class MainService{
 }
 ```
 
+### 다형성을 실현하기 위한 메커니즘
+
+인터페이스와 추상 클래스는 모두 다형성(Polymorphism)이라는 개념을 실현하기 위한 기능이다.
+
+java.util.ArrayList 클래스와 java.util.LinkedList 클래스가 비슷한 List의 조작을 다른 이름의 메서드로 갖고 있다면 프로그래머는 그 차이를 파악해야한다.
+
+```java
+List<Integer> list = new ArrayList<>();
+list.add(1);
+list.add(2);
+list.add(10);
+System.out.println(list);
+```
+
+```java
+List<Integer> lsit = new LinkedList<>();
+list.add(1);
+list.add(2);
+list.add(3);
+System.out.println(list);
+```
 
 
 
