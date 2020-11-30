@@ -2326,6 +2326,37 @@ System.out.println(list);
 - 상수 인터페이스 필요하지 않은 경우 변경이 쉽지 않다
 - 이용하지 않는 상수까지도 상수 인터페이스의 구현 클래스가 보관하게 된다
 
+**추상 클래스의 성질**
+
+설계자 관점에서 추상 클래스는 클래스를 추상화한 것, 여러 클래스에서 동일한 부분을 슈퍼클래스로 잘라내어 추상화해, 공통화한것이다.
+
+- 인터페이스는 `정의`에 사용
+- 추상 클래스는 `뼈대`나 `공통 처리`에 사용
+
+```java
+public interface UserManagementService {
+    void register(User user);
+    List<UserDto> list();
+    void delete(Integer userId);
+}
+```
+
+```java
+public abstract class AbstractUserManagementService implements UserManagementService {
+    protected UserDto convertFrom(User user) {
+    }
+}
+
+public class HttpUserManagementService extends AbstractUserManagementService {
+    public List<UserDto> list() {
+    }
+}
+
+public class DatabaseUserManagementService extends AbstractUserManagementService {
+    public List<UserDto> list() {
+    }
+}
+```
 
 
 ## ref
