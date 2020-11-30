@@ -2235,7 +2235,55 @@ this is an apple
 
 - 테스트 용이성을 높이기 위해 protected하기
 
+## 객체의 라이프 사이클
 
+1. 로컬 변수
+
+변수를 선언한 곳에서 생성되어 블록이 종료한 시점에서 폐기된다.
+
+2. 인스턴스 변수
+
+클래스의 필드로 선언된 변수, 부모 객체를 생성할때 생성되며 부모 객체가 가비지 컬렉션 될때 함께 삭제된다.
+
+3. 클래스 변수
+
+클래스 변수는 static 필드로 선언된 변수다. 자바의 변수 중 가장 긴 라이프 사이클을 갖느다.
+클래스 로드 시에 생성되어 클래스가 언로드되면 소멸된다. 
+
+
+**라이프 사이클의 좋은 사례**
+
+- 라이프 사이클을 짧게 하여 사고를 방지
+
+라이프 사이클이 길면 길수록 의도하지 않게 값이 변경될 가능성이 커짐, 따라서 라이프 사이클을 짧게한다.
+
+- 라이프 사이클을 길게 하여 성능을 높이기
+
+라이프 사이클을 짧게하면 수명이 짧은 객체가 많이 만들어져 그만큼 가비지 컬렉션의 발생 횟수도 증가한다.
+
+그러나 라이프 사이클이 긴 객체가 너무 많아지면 오히려 GC가 늘어날 수 있기 때문에 어떤 객체의라이프 사이클을 늘릴지 검토가 필요하다.
+
+유틸리티 클래스
+
+```java
+public class StringUtils {
+    // static은 붙이지 않는다.
+    public boolean isEmpty(String text) {
+        return (text == null || text.length() == 0);
+    }
+}
+```
+
+```java
+public class MainService{
+    private static StringUtils stringUtils = new StringUtils();
+
+    public void execute(String text) {
+        if(stringUtils.isEmpty(text)) {
+        }
+    }
+}
+```
 
 
 
