@@ -2211,16 +2211,153 @@ this is an apple
 앞전에 설명했던 String과 StringBuilder의 속도차이는 이점으로 생기는 것이다.
 
 
-## 가시성을 설정하여 버그가 적은 프로그램 만들기
+## 가시성을 적절히 설정하여 버그가 적은 프로그램 만들기
+
+자바의 변수와 메서드를 사용할 수 있는 범위를 `가시성`이라고 한다. 가시성을 적절하게 설정함으로써 잘못된 사용을 줄이거나 확장성을 높게 할 수 있다.
+
+|가시성|설명|
+|------|-------------------|
+|public|모든 클래스로부터 이용할 수 있다.|
+|protected|서브클래스, 동일 패키지의 클래스가 이용할 수 있다.|
+|package private|동일 패키지의 클래스로부터 이용할 수 있다.|
+|private|자신의 클래스만 이용할 수 있다.|
+
+**public -> protecte -> package private -> private 순으로 사용 가능한 범위가 좁아져 간다.**
+
+좁은 가시성을 사용하는 이유는, 생각지도 못한 클래스에서 호출되지 않게 도와준다.
+- 원칙적으로 가장 범위가 좁은 가시성으로 한다.
+  - 클래스에서 선언하는 필드는 private로 한다.
+  - 외부에서 액세스하는 메서드에만 public으로 한다.
+
+- 확장성을 높이기 위해 protected로 한다.
+
+`원칙은 private` 라고 설명했지만 모두 다 private하면 사용하기 어렵게된다. 예를 들어 기능확장을 하고 싶은 경우에 private 메서드로 하면 상속도 변경도 할 수 없다. 따라서 확장할 가능성이 있는 메서드는 protected로 하여 미래를 위한 확장성을 높여둔다.
+
+- 테스트 용이성을 높이기 위해 protected하기
+
+## 객체의 라이프 사이클
+
+1. 로컬 변수
+
+변수를 선언한 곳에서 생성되어 블록이 종료한 시점에서 폐기된다.
+
+2. 인스턴스 변수
+
+클래스의 필드로 선언된 변수, 부모 객체를 생성할때 생성되며 부모 객체가 가비지 컬렉션 될때 함께 삭제된다.
+
+3. 클래스 변수
+
+클래스 변수는 static 필드로 선언된 변수다. 자바의 변수 중 가장 긴 라이프 사이클을 갖느다.
+클래스 로드 시에 생성되어 클래스가 언로드되면 소멸된다. 
 
 
-자바의 변수와 메서드를 사용할 수 있는 범위를 `가시성`이라고 한다. 가시성을 적절하게 설정함으로써 잘못된 사용을 줄이거나 확장성을 높게 할 수 있다
+**라이프 사이클의 좋은 사례**
 
-자바에서는 다음과 같은 네가지의 가시성이 있다.
+- 라이프 사이클을 짧게 하여 사고를 방지
 
-|우선순위|연산자|내용|
-|------|---------|----------------|
-| 1 | (), [] | 괄호/대괄호 |
+라이프 사이클이 길면 길수록 의도하지 않게 값이 변경될 가능성이 커짐, 따라서 라이프 사이클을 짧게한다.
+
+- 라이프 사이클을 길게 하여 성능을 높이기
+
+라이프 사이클을 짧게하면 수명이 짧은 객체가 많이 만들어져 그만큼 가비지 컬렉션의 발생 횟수도 증가한다.
+
+그러나 라이프 사이클이 긴 객체가 너무 많아지면 오히려 GC가 늘어날 수 있기 때문에 어떤 객체의라이프 사이클을 늘릴지 검토가 필요하다.
+
+유틸리티 클래스
+
+```java
+public class StringUtils {
+    // static은 붙이지 않는다.
+    public boolean isEmpty(String text) {
+        return (text == null || text.length() == 0);
+    }
+}
+```
+
+```java
+public class MainService{
+    private static StringUtils stringUtils = new StringUtils();
+
+    public void execute(String text) {
+        if(stringUtils.isEmpty(text)) {
+        }
+    }
+}
+```
+
+### 다형성을 실현하기 위한 메커니즘
+
+인터페이스와 추상 클래스는 모두 다형성(Polymorphism)이라는 개념을 실현하기 위한 기능이다.
+
+java.util.ArrayList 클래스와 java.util.LinkedList 클래스가 비슷한 List의 조작을 다른 이름의 메서드로 갖고 있다면 프로그래머는 그 차이를 파악해야한다.
+
+```java
+List<Integer> list = new ArrayList<>();
+list.add(1);
+list.add(2);
+list.add(10);
+System.out.println(list);
+```
+
+```java
+List<Integer> lsit = new LinkedList<>();
+list.add(1);
+list.add(2);
+list.add(3);
+System.out.println(list);
+```
+
+
+
+**인터페이스와 추상 클래스의 성질**
+
+| 종류 | 설명 |
+|------|--------------------|
+| 인터페이스 | 인스턴스 변수를 가질 수 없다. 상수를 가질 수 있다. |
+| 추상 클래스 | abstract 메서드를 선언할 수 있다. 추상 클래스 자체는 인스턴스를 생성할 수 없다. 그외에는 클래스와 같다. |
+
+**인터페이스의 성질**
+
+설계자 관점에서 인터페이스는 `특성`의 정의라고 할 수 있다.
+인터페이스를 구현함으로써 동일한 특성을 가진 클래스를 여러 개 만들 수 있다.
+한편, 구현자 관점에서는 인터페이스는 `클래스에 대한 액세스를 제한하는 제약`
+
+- 인터페이스의 원래의 이용 목적이 아니다
+- 상수 인터페이스 필요하지 않은 경우 변경이 쉽지 않다
+- 이용하지 않는 상수까지도 상수 인터페이스의 구현 클래스가 보관하게 된다
+
+**추상 클래스의 성질**
+
+설계자 관점에서 추상 클래스는 클래스를 추상화한 것, 여러 클래스에서 동일한 부분을 슈퍼클래스로 잘라내어 추상화해, 공통화한것이다.
+
+- 인터페이스는 `정의`에 사용
+- 추상 클래스는 `뼈대`나 `공통 처리`에 사용
+
+```java
+public interface UserManagementService {
+    void register(User user);
+    List<UserDto> list();
+    void delete(Integer userId);
+}
+```
+
+```java
+public abstract class AbstractUserManagementService implements UserManagementService {
+    protected UserDto convertFrom(User user) {
+    }
+}
+
+public class HttpUserManagementService extends AbstractUserManagementService {
+    public List<UserDto> list() {
+    }
+}
+
+public class DatabaseUserManagementService extends AbstractUserManagementService {
+    public List<UserDto> list() {
+    }
+}
+```
+
 
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
