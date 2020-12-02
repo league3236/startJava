@@ -98,3 +98,7 @@ jenv 설치
 $ brew install jenv
 ```
 
+.zshrc에 추가하기
+
+```
+```

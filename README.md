@@ -2210,6 +2210,18 @@ this is an apple
 
 앞전에 설명했던 String과 StringBuilder의 속도차이는 이점으로 생기는 것이다.
 
+
+## 가시성을 설정하여 버그가 적은 프로그램 만들기
+
+
+자바의 변수와 메서드를 사용할 수 있는 범위를 `가시성`이라고 한다. 가시성을 적절하게 설정함으로써 잘못된 사용을 줄이거나 확장성을 높게 할 수 있다
+
+자바에서는 다음과 같은 네가지의 가시성이 있다.
+
+|우선순위|연산자|내용|
+|------|---------|----------------|
+| 1 | (), [] | 괄호/대괄호 |
+
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
 - https://www.holaxprogramming.com/2014/02/12/java-list-interface/
