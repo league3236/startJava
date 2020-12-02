@@ -2358,6 +2358,62 @@ public class DatabaseUserManagementService extends AbstractUserManagementService
 }
 ```
 
+인터페이스 부분은 한번 더 정독하기 
+
+## 스레드 세이프
+
+**프로세스**
+
+`컴퓨터에서 연속적으로 실행되고 있는 컴퓨터 프로그램` 프로세스는 하드 디스크에 설치되어 있는 프로그램을 메모리상에 실행중인 작업이다. 
+
+**멀티 스레드**
+
+여러 작업을 동시에 수행하는 방식을 멀티 스레드라고 함
+`프로세스 내에서 실행되는 여러 흐름의 단위`
+기본적으로 프로세스당 최소 1개의 스레드를 가지고 있고 그것을 메인 스레드라고 한다. 
+
+**멀티 스레드의 장점**
+
+- 하나의 장시간을 요하는 작업 때문에 뒤에 있는 간단한 작업이 기다릴 필요가 없다.
+- 태스크의 대기 시간을 효율적으로 활용할 수 있다.
+- 대량의 태스크를 빨리 끝낼 수 있다.
+CPU가 멀티 코어인 경우에도 프로그램을 단일 스레드로 움직이고 있으면 기껏해야 CPU 1코어 만큼의 계산밖에 해낼 수가 없다. 한편, 멀티스레드로 하여 여러 코어를 활용하면 Java VM이 스레드의 각 처리를 여러 프로세서/코어에 할당하여 시스템이 갖고있는 능력을 최대한 활용새 주므로 전체의 응답시간을 향상시킬 수 있다.
+
+예를 들어 대량의 로그 데이터와 측정 데이터 등의 집계 결과를 얻고자 하는 경우 각 스레드별로 데이터를 분배하여 처리하고, 마지막에 그 결과를 통합함으로써 코어 수만큼 처리가 끝나는 시간을 단축할 수 있다.
+
+- 되도록 각 스레드의 처리가 동시에 끝나도록 데이터를 분할한다.
+- 스레드 간에 서로를 기다리게 하는 처리가 없어야 한다/적어야 한다.
+
+**멀티 스레드의 단점**
+
+- 메모리의 사용량이 증가한다
+
+스레드가 증가하면 동시에 처리하는 메모리의 사용량도 증가한다. 또한 원래부터 스레드 자체를 관리하는데도 메모리는 소비된다. 스레드 수가 몇개정도라면 그다지 영향이 없을지도 모르겠지만 100개나 1000개씩 스레드를 마구 만들어 버리면 메모리 사용량이 문제가 될 수 있다.
+
+- 처리량이 감소한다
+- 동시성 특유의 문제가 발생한다
+서로 데이터를 사용하다가 충돌이 일어날 가능성이 있다.
+디버깅이 다소 까다로워진다.
+
+교착상태가 발생하여 처리가 정지한다.
+
+```
+import java.util.ArrayList;
+import java.util.List;
+
+public class DeadLockSample {
+    public static void main(String... args) {
+        list<String> list1 = new ArrayList<>();
+        list<String> list2 = new ArrayList<>();
+        list1.add("list1-1");
+        list2.add("list2-1");
+
+        new Thread(new ResourceLocker(" 스레드A", list1, list2)).start();
+        new Thread(new ResourceLocker(" 스레드B", list1, list2)).start();
+    }
+}
+```
+
 
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
@@ -2367,6 +2423,7 @@ public class DatabaseUserManagementService extends AbstractUserManagementService
 - https://programmingnote.tistory.com/29
 - https://heepie.me/32
 - 자바 마스터북
+- https://magi82.github.io/process-thread/
 
 
 
