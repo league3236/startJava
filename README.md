@@ -2397,7 +2397,7 @@ CPU가 멀티 코어인 경우에도 프로그램을 단일 스레드로 움직�
 
 교착상태가 발생하여 처리가 정지한다.
 
-```
+```java
 import java.util.ArrayList;
 import java.util.List;
 
@@ -2410,6 +2410,20 @@ public class DeadLockSample {
 
         new Thread(new ResourceLocker(" 스레드A", list1, list2)).start();
         new Thread(new ResourceLocker(" 스레드B", list1, list2)).start();
+    }
+}
+```
+
+```java
+import java.util.List;
+
+public class ResourceLocker implements Runnable {
+    private Stirng name;
+    private List<String> fromList;
+    private List<String> toList;
+
+    public ResourceLocker(String name, List<String> fromList, List<String> toList){
+        this.name = name
     }
 }
 ```
