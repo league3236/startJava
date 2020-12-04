@@ -2428,6 +2428,35 @@ public class ResourceLocker implements Runnable {
 }
 ```
 
+추후에 진행
+
+## java stack
+
+- https://velog.io/@lshjh4848/Java-%EC%8A%A4%ED%83%9DStack-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%A0%95%EB%A6%AC
+
+
+자바의 Stack은 다음과 같이 선언할 수 있음
+
+```java
+Stack<Elament> stack = new stack<>();
+```
+
+Stack 클래스는 기본적으로 5가지 함수를 지원해준다.
+
+```java
+push(Element item); // 데이터 추가
+pop();  // 데이터 삭제
+peek();  // 데이터 조회
+empty();    // stack의 값이 비었는지 확인, 비었으면 true, 아니면 false
+search(Object o);   // 인자값으로 받은 데이터의 위치 반환
+```
+
+예제 소스코드
+
+```java
+
+```
+
 
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
@@ -2438,6 +2467,5 @@ public class ResourceLocker implements Runnable {
 - https://heepie.me/32
 - 자바 마스터북
 - https://magi82.github.io/process-thread/
-
 
 
