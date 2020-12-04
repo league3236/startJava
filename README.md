@@ -2437,6 +2437,8 @@ public class ResourceLocker implements Runnable {
 
 자바의 Stack은 다음과 같이 선언할 수 있음
 
+stack의 특성상 마지막 데이터를 쉽게 빼낼 수 있어 마지막 기록, 최근 기록등을 저장할 경우 사용, 조회에 강점을 가지는 자료구조들이 많기 때문에 데이터 조회가 일어날 경우 stack 사용을 회피함. 
+
 ```java
 Stack<Elament> stack = new stack<>();
 ```
@@ -2475,9 +2477,9 @@ search는 인자 값으로 받은 값이 스택 구조에서 몇번째에 있는
 ```java
 public class UserArrayStack {
 
-    int top;
-    int [] stack;
-    int size;
+    private int top;
+    private int [] stack;
+    private int size;
 
     public UserArrayStack(int size) {
         this.size = size;
@@ -2510,6 +2512,23 @@ public class UserArrayStack {
     private boolean empty() {
         return size == 0;
     }
+}
+```
+
+linked list로 구현
+
+```java
+public class Node {
+    private int data;
+    private Node nextNode;
+
+    public Node(int data) {
+        this.data = data;
+        this.nextNode = null 
+    }
+
+    private 
+
 }
 ```
 
