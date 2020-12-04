@@ -2454,8 +2454,21 @@ search(Object o);   // 인자값으로 받은 데이터의 위치 반환
 예제 소스코드
 
 ```java
+Stack<Integer> stack = new stack<>();
 
+for (int i = 0; i < 5; i++) {
+    stack.push(i + 1);
+    System.out.println(stack.peek());
+}
+
+stack.pop();  // 1, 2, 3, 4
+System.out.println(stack.peek()); // 4
+System.out.println(stack.search(1)); // 4
+System.out.println(stack.empty());  // false
 ```
+
+search는 인자 값으로 받은 값이 스택 구조에서 몇번째에 있는지를 반환한다. 
+앞으로 몇번째 pop을 했을때 나오는지를 반환하는 것이다.
 
 
 ## ref
