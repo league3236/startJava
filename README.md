@@ -2470,6 +2470,49 @@ System.out.println(stack.empty());  // false
 search는 인자 값으로 받은 값이 스택 구조에서 몇번째에 있는지를 반환한다. 
 앞으로 몇번째 pop을 했을때 나오는지를 반환하는 것이다.
 
+**사용자 정의 Stack 구현**
+
+```java
+public class UserArrayStack {
+
+    int top;
+    int [] stack;
+    int size;
+
+    public UserArrayStack(int size) {
+        this.size = size;
+        stack = new int[size];
+        top = -1;
+    }
+
+    private void push(int item) {
+        stack[++top] = item;
+        System.out.println(stack[top] + " push!");
+    }
+
+    private void peek() {
+        Sysetm.out.println(stack[top] + " peek!");
+    }
+
+    private void pop() {
+        System.out.println(stack[top] + " pop!");
+        stack[top--] = 0;
+    }
+
+    private int search(int item) {
+        for (int i = 0 ; i<= top; i++) {
+            if (stack[i] == item)
+                return (top - i) + 1;
+        } 
+        return -1;
+    }
+
+    private boolean empty() {
+        return size == 0;
+    }
+}
+```
+
 
 ## ref
 - https://jaepils.github.io/java/2018/06/27/java-time-Instant.html
