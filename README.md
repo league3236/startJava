@@ -2424,11 +2424,36 @@ public class ResourceLocker implements Runnable {
 
     public ResourceLocker(String name, List<String> fromList, List<String> toList){
         this.name = name
+        this.fromList = fromList;
+        this.toList = toList;
+    }
+
+    @Override
+    public void run() {
+        String str = null;
+        try {
+            System.out.printf("[%s] started.%n", name);
+            Tread.sleep(500L);
+            System.out.printf("[%s] attempt to lock fmList(%s).%n", name, fromList);
+
+            synchronized (fromList) {
+                System.out.printf("[%s] fmList(%s) was locked.%n", name, fromList);
+                str = fromList.get(0);
+                System.out.printf("[%s] %s <- fmList(%s)%n", name, str, fromList);
+                Thread.sleep(500L);
+
+                System.out.printf()
+                syncronized (toList){
+                    ...
+                }
+            }
+        }
     }
 }
 ```
 
-추후에 진행
+스레드 문제를 줄이는 확실한 방법은 `스레드를 만들지 않는`것이다. 프레임워크에서는 스레드가 필요한 경우 프레임워크 내에서 스레드를 생성하여 프레임워크의 이용자가 스레드를 만들지 않아도 된다.
+
 
 ## java stack
 
