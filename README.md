@@ -2437,7 +2437,7 @@ public class ResourceLocker implements Runnable {
 
 자바의 Stack은 다음과 같이 선언할 수 있음
 
-stack의 특성상 마지막 데이터를 쉽게 빼낼 수 있어 마지막 기록, 최근 기록등을 저장할 경우 사용, 조회에 강점을 가지는 자료구조들이 많기 때문에 데이터 조회가 일어날 경우 stack 사용을 회피함. 
+stack의 특성상 마지막 데이터를 쉽게 빼낼 수 있어 마지막 기록, 최근 기록등을 저장할 경우 사용, 조회에 강점을 가지는 자료구조들이 많기 때문에 데이터 조회가 일어날 경우 stack 사용을 회피함. 이러한 특성 때문에 stack 구현시 데이터 조회가 느린 연결리스트의 단점은 실질적으로 단점이 아니게 됨
 
 ```java
 Stack<Elament> stack = new stack<>();
@@ -2517,20 +2517,6 @@ public class UserArrayStack {
 
 linked list로 구현
 
-```java
-public class Node {
-    private int data;
-    private Node nextNode;
-
-    public Node(int data) {
-        this.data = data;
-        this.nextNode = null 
-    }
-
-    private 
-
-}
-```
 
 **배열의 장단점**
 
