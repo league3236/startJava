@@ -2548,9 +2548,78 @@ linked list로 구현
 배열의 장점은 구현이 쉽고 데이터 접근 속도 조회가 빠르다는 점이다. 
 단점은 항상 최대 개수를 정해놔야지 사용이 가능하다.
 
-**링크드 리스트 구현의 장단점**
+**링크드 리스트 구현의 장점**
 
 연결리스트로 구현했을때의 장점은 데이터의 최대 개수가 한정되어 있지 않고 삽입 삭제가 용이하다는 것, 배열과 달리 데이터의 조회가 힘든다는 점이다.
+
+### Checkstyle?
+
+자바의 소스 코드의 포맷(구성)을 체크하여 규칙에 따르지 않은 기술에 대해서는 경고해주는 도구
+
+### FindBugs로 버그 체크
+
+버그의 패턴이라는 것이 분명히 존재한다.
+예를들어, `변수에 할당된 값이 사용되지 않는다`, `리소스가 닫히지 않았다`등의 문제는 흔히 볼 수 있는 종류이다.
+
+### Junit
+
+테스트 코드 구현하기
+
+```java
+package kr.jpub.java.unit;
+
+public class Greeting {
+    public String getMessage(int hour) {
+        String message;
+        if (hour >= 5 && hour < 11>) {
+            message = "좋은 아침입니다"; 
+        } else if (hour > 11 && hour < 17) {
+            message = "안녕하세요";
+        } else {
+            message = "수고가 많습니다";
+        }
+        return message;
+    }
+}
+
+```
+
+```java
+package kr.jpub.java.junit;
+
+import static org.hamcrest.CoreMatchers.js;
+import static org.junit.Assert.assertThat;
+
+import org.junit.Test;
+
+public class GreetingTest {
+    private Greeting target = new Greeting();
+    @Test
+    public void getMessage_moning(){
+        //실행
+        String message = this.target.getMessage(5);
+        //검증
+        assertThat(message, is("좋은 아침입니다"));
+    }
+
+    @Test
+    public void getMessage_lunching(){
+        //실행
+        String message = this.target.getMessage(11);
+        //검증
+        assertThat(message, is("안녕하세요"));
+    }
+
+    @Test
+    public void getMessage_dining(){
+        //실행
+        String message = this.target.getMessage(17);
+        //검증
+        assertThat(message, is("수고가 많습니다"));
+    }
+}
+```
+
 
 
 ## ref
