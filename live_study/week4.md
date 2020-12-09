@@ -74,4 +74,118 @@ https://lovefor-you.tistory.com/189 <br>
 
 ## 반복문
 
+조건에 다라서 특정 실행문을 반복적으로 실행할 수 있게한다.
+반복문에는 `for`, `while`, `do-while`문이 있다.
+
+**for문**
+
+- 문법
+
+```java
+
+for (시작값 지정 ; 조건식 ; 증감식) {
+    반복해서 실행하는 문장
+}
+반복이 끝나고 실행되는 문장
+```
+
+- 예제
+
+
+```java
+for (int i=1; i<= 10 ; i++){
+    system.out.println(i+"번째");
+}
+```
+
+**다중 for 문**
+
+- 문법
+
+```java
+for (시작값 지정 ; 조건식 ; 증감식) {
+    반복해서 실행하는 문장1
+    for (시작값 지정 ; 조건식 ; 증감식) {
+        반복해서 실행하는 문장2
+    }
+}
+반복이 끝나고 실행되는 문장
+
+```
+
+- 예제
+
+```java
+for (int i=1; i<= 10 ; i++){
+    system.out.println(i+"번째 i");
+    for (int j=i; j<= 10 ; j++){
+        system.out.println(i+"번째 i" +i+", 번째 j");
+    }
+}
+system.out.println("for문이 끝났습니다.");
+```
+
+**while 문**
+
+- 문법
+
+```java
+// 조건이 true일 동안 반복해서 실행문을 실행
+while(조건문) {
+    실행문 ;
+}
+```
+
+- 예제
+
+1부터 5까지 더하기
+
+```java
+int sum = 0;
+int i = 1;
+
+while(i < 6) {
+    sum += i++;
+}
+System.out.println(sum);
+```
+
+**do-while문**
+
+while문의 경우 조건이 만족하지 않는다면 한번도 반복할 수 있지만, do while문의 경우 **무조건 한번은 실행되는 반복문**이다.
+
+- 문법
+
+```java
+do {
+    실행문;
+}while(조건문);
+```
+
+- 예제
+
+```java
+
+import java.util.Scanner;
+
+public class DoWhileExam {
+    public static void main(String[] args) {
+        int value = 0;
+
+        Scanner scan = new Scanner(System.in);
+
+        do{
+            value = scan.nextInt();
+            System.out.println("입력받은 수 : " + value);
+        }while(value != 10);
+
+        System.out.println("반복문 종료");
+    }
+}
+```
+
 - ref
+https://nov6th.tistory.com/37 <br>
+https://m.blog.naver.com/PostView.nhn?blogId=jydev&logNo=220714061246&proxyReferer=https:%2F%2Fwww.google.com%2F <br>
+https://programmers.co.kr/learn/courses/5/lessons/411<br>
+https://programmers.co.kr/learn/courses/5/lessons/121
