@@ -189,3 +189,10 @@ https://nov6th.tistory.com/37 <br>
 https://m.blog.naver.com/PostView.nhn?blogId=jydev&logNo=220714061246&proxyReferer=https:%2F%2Fwww.google.com%2F <br>
 https://programmers.co.kr/learn/courses/5/lessons/411<br>
 https://programmers.co.kr/learn/courses/5/lessons/121
+
+
+# 과제 (옵션)
+
+## Junit5 학습하기
+
+-- 내일 진행
