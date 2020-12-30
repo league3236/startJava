@@ -38,7 +38,6 @@ package java.awt.event;
 package java.awt.event.*;
 ```
 
-
 ### ref
 - http://www.tcpschool.com/java/java_usingClass_package
 - https://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94_%ED%8C%A8%ED%82%A4%EC%A7%80
@@ -305,9 +304,48 @@ public class B {
 
 위와 같이 패키지가 다르면 default 지시자의 경우 다른 패키지에서 접근이 불가능하다는 점이 있다.
 
+### Protected 지시자 
 
+Protected 지시자는 인스턴스 멤버를 대상으로만 선언이 가능하며, 다음 두 가지 특징을 가진다.
 
+- protected 선언은 default 선언이 허용하는 접근을 모두 허용
+- protected 선언은 default 선언이 허용하지 않는 `한 영역`에서의 접근을 허용
 
+`protected` 지시자를 이용하면 다른 패키지 내에서도 상곡 관계라면 인스턴스 멤버에 접근이 가능
+
+```java
+package package1;
+
+public class A {
+    int num; // default 지시자
+}
+```
+
+```java
+package package2;
+
+public class B extends package1.A {
+    public void Hello(int n) {
+        num = n; // default 지시자로 선언된 상속된 변수로 접근 --> 에러
+    }
+}
+```
+
+class A 코드 num 멤버를 protected 지시자로 교체하면 해결이 가능하다.
+
+```java
+package package1;
+
+public class A {
+    protected int num; // default 지시자
+}
+```
+
+### Private 지시자
+
+Private 지시자는 정보 은닉을 위해 사용한다. 
+
+자바에서 말하는 '정보'란 클래스의 '인스턴스 변수'를 의미한다. private 지시자를 이용하면 인스턴스 변수 혹은 인스턴스 메소드를 클래스 내부에서만 접근이 가능하도록 할 수 있다. 
 
 ### ref 
 - https://luyin.tistory.com/232
