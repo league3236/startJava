@@ -230,9 +230,87 @@ $ set CLASSPATH=
 |default|O|O|X|X|
 |private|O|X|X|X|
 
+자 이제 좀 더 자세히 알아보도록 하자
+
+### Public 지시자
+
+public 지시자로 정의가 되어있다면 이는 위치에 상관 없이 어디서든 해당 클래스의 인스턴스를 생성할 수 있다는 뜻이다.
+
+```java
+public class A {
+    ~ code
+}
+```
+
+즉, public 지시 자를 이용해 클래스를 정의하면 같은 패키지가 아니더라도 어디서든 인스턴스 생성이 가능하다
+
+예시를 보자.
+
+```java
+package package1;
+
+public class A {
+    public void Hello() {
+        System.out.println("Hello");
+    }
+}
+```
+
+위의 A 클래스에 대한 인스턴스를 생성이 가능하다.
+
+```java
+package package2;
+
+public class B {
+    public void Hello(package1.A a) {
+        A.Hello(); // 호출 가능
+    }
+}
+```
+
+
+### default 지시자
+
+public 없이 클래스를 정의하면 자동을 default 지시자가 적용이 된다.
+
+이렇게되면 같은 패키지내에서만 인스턴스 생성이 가능하다.
+
+아래의 예시를 보자
+
+```java
+package package1;
+
+public class A {
+    public void Hello() {
+        System.out.println("Hello");
+    }
+    void Bye() {
+        System.out.println("Bye");
+    }
+}
+```
+
+위의 A 클래스에 대한 인스턴스를 생성이 가능하다.
+
+```java
+package package2;
+
+public class B {
+    public void Hello(package1.A a) {
+        A.Hello(); // 호출 가능
+        A.Bye(); // 호출이 불가능하다.
+    }
+}
+```
+
+위와 같이 패키지가 다르면 default 지시자의 경우 다른 패키지에서 접근이 불가능하다는 점이 있다.
+
+
+
 
 
 ### ref 
 - https://luyin.tistory.com/232
 - https://blog.hexabrain.net/119
 - https://yms2047.tistory.com/entry/%EC%BA%A1%EC%8A%90%ED%99%94%EB%9E%80
+- https://travelbeeee.tistory.com/438
