@@ -92,9 +92,12 @@ java.lang 패키지는 import 문을 사용하지않고도 사용 가능하다.
 - https://choiwonwoo.tistory.com/entry/Java-%EA%B8%B0%EC%B4%88-Package-vs-Import%EB%9E%80
 
 
-### 클래스 패스(Class Path)
+### 클래스 패스(Class Path)와 환경변수
 
-클래스패스란 말 그대로 클래스를 찾기 위한 경로이다. 자바에서 클래스패스의 의미도 똑같다. JVM이 프로그램을 실행할 때, 클래스파일을 찾는데 기준이 되는 파일 경로를 말하는 것이다. 소스코드(.Java로 끝나는 파일)를 컴파일하면 소스코드가 `바이트 코드` (바이너리 형태의 .class 파일) 로 변환된다. java runtime(java 또는 jre)으로 이 .class 파일을 찾으면 첫 번째로 찾은 파일을 사용한다.
+클래스패스란 말 그대로 클래스를 찾기 위한 경로이다.
+ 
+`자바 VM이 클래스 파일을 찾는 경로`
+자바에서 클래스패스의 의미도 똑같다. JVM이 프로그램을 실행할 때, 클래스파일을 찾는데 기준이 되는 파일 경로를 말하는 것이다. 소스코드(.Java로 끝나는 파일)를 컴파일하면 소스코드가 `바이트 코드` (바이너리 형태의 .class 파일) 로 변환된다. java runtime(java 또는 jre)으로 이 .class 파일을 찾으면 첫 번째로 찾은 파일을 사용한다.
 
 classpath를 지정할 수 있는 두가지 방법이 있다. 하나는 환경 변수 CLASSPATH를 사용하는 방법이고, 하나는 java runtime에 -classpath 플래그를 사용하는 방법이다. 
 
@@ -114,6 +117,31 @@ VM(자바 실행 프로그램)이 이렇게 얻어진 byte code (.class 파일)�
 때문에 소스코드보다 이해가 쉽기 때문에 속도가 더 빠를 뿐만 아니라, 매번 소스코드 문법을 검사하는 등 불필요한 작업을 생략할 수 있어서 효율적이다.
 ```
 
+### 환경변수란 무언인가?
+
+`환경변수는 운영체제가 참조하는 변수이다.`
+
+운영체제 안의 기본적인 명령어는 컴퓨터가 이해할 수있지만 새로 추가되는 프로그램 또는 자바 플랫폼은 컴퓨터가 어떤식으로 실행해야 할까??
+
+자바 개발로 나온 .java파일을 .class로 컴파일 하기 위해서 자바 컴파일러인 javac.exe를 실행하고 싶은 경우를 생각하면 된다.
+
+초기에 환경변수를 세팅하지 않으면 다음과 같은 에러가 출력될것이다.
+
+**'javac'는 내부 또는 외부 명령, 실행할수있는 프로그램이 아닙니다.**
+
+javac라는 명령어를 운영체제가 찾을 수 없기때문인데, 이 때 운영체제가 찾을 수 있게 설정해주는 것이 환경변수이다.
+
+운영체제는 다음과 같은 행동을 통하여 위치를 잡게된다.
+
+1. javac 입력 후 엔터를 누른다.
+2. 운영체제는 javac라는 내부 명령어가 있는지 검사한다.
+3. 없는 경우 Path 환경변수를 검색한다.
+4. Path에 설정된 경로들(; 세미콜론으로 구분)을 모두 검사한다.
+5. javac.exe를 발견하면 실행한다.
+
+좀 더 자세한 내용은 아래에서 확인 가능하다.
+https://dololak.tistory.com/20
+
 ### classpath에 사용할 수 있는 값
 
 classpath는 콜론(:)으로 구분된 디렉토리 및 파일 목록이다.
@@ -129,8 +157,51 @@ classpath는 콜론(:)으로 구분된 디렉토리 및 파일 목록이다.
 /export/home/username/java/classes:/export/home/username/java/classes/util.zip:/export/home/username/java/classes/checkers.jar
 ```
 
+### 클래스 path를 어떻게 사용하는가?
+
+이에 관련해서는 코딩하는 오징어님이 설명을 잘해주셨다.
+https://effectivesquid.tistory.com/entry/%EC%9E%90%EB%B0%94-%ED%81%B4%EB%9E%98%EC%8A%A4%ED%8C%A8%EC%8A%A4classpath%EB%9E%80
+
+다음과 같이 classpath를 지정할 수 있다. 즉, 환경 변수에 등록하는 방법이다.
+
+```
+export CLASSPATH = ${PATH}
+```
+
+해당 클래스 패스에 좀더 추가를 하기 위해서는 :로 묶어준다.
+
+```
+export CLASSPATH=${PATH}:/export/home/username:/export/home/username
+```
+
+### -classpath 옵션
+
+위에서 -classpath 플래그 를 사용하는 방법도 있다고 했는데 어떻게 사용할까?
+
+아래 자세한 내용이 나타나 있다.
+https://howtodoinjava.com/java-examples/set-classpath-command-line/
+
+`-classpath` or `-cp`를 사용하여 command line에서 지정 가능하다.
+
+예를 봐보자
+```/bin/bash
+$ java -cp .;c:/jars demo-application.jar
+```
+
+위와 같이 jar가 있는 위치를 classpath로 지정하여 java 프로그램을 실행시킬 수 있다.
+
+### 클래스패스 초기화?
+
+클래스 패스 초기화는 아래의 명령어로 할 수 있다.
+
+```/bin/bash
+$ set CLASSPATH=
+```
 
 ### ref
 - https://effectivesquid.tistory.com/entry/%EC%9E%90%EB%B0%94-%ED%81%B4%EB%9E%98%EC%8A%A4%ED%8C%A8%EC%8A%A4classpath%EB%9E%80
 - https://goateedev.tistory.com/169
 - https://opentutorials.org/course/1223/5527
+
+
+## Java 접근지시자
