@@ -1,0 +1,136 @@
+## 학습할 것 (필수)
+- package 키워드
+- import 키워드
+- 클래스패스
+- CLASSPATH 환경변수
+- -classpath 옵션
+- 접근지시자
+
+## package 키워드
+
+### 패키지(package)린?
+
+자바에서 패키지(package)란 클래스와 인터페이스의 집합을 의미한다
+이렇게 서로 관련이 있는 클래스나 인터페이스를 함께 묶음으로써 파일을 효율적으로 관리할 수 있게 된다. 또한, 협업 시 서로 작업한 클래스 사이에서 발생할 수 있는 이름 충돌 문제까지도 패키지를 이용하면 피할 수 있다.
+
+자바에서 패키지(package)는 물리적으로 하나의 디렉터리를 의미한다.
+따라서 하나의 패키지에 속한 클래스나 인터페이스 파일은 모두 해당 패키지 이름의 디렉터리에 포함되어 있다.
+
+이러한 패키지는 다른 패키지를 포함할 수 있으며, 이때 디렉터리의 계층 구조는 점(.)으로 구분된다.
+
+```
+자바에서 패키지는 중첩되지 않는다. 예를 들어 java.util과 java.util.regex 패키지는 서로 관련이 없다. 각각에는 독립된 클래스 묶음이 들어 있다.
+```
+
+## 패키지 사용
+
+자바 소스 파일에서 이 파일의 클래스나 클래스들이 속하는 패키지는 `package`라는 키워드와 함께 지정된다. 이 키워드는 일반적으로 소스 파일에서 처음 오는 키워드이다. 하나의 패키지 선언을 소스 파일에 선언할때엔느 다음과 같이 할 수 있다.
+
+자바 소스 파일 안의 패키지 클래스들을 사용하려면 `import` 선언과 함께 패키지로부터 클래스들을 가져오는 것이 편리하다.
+
+```java
+package java.awt.event;
+```
+
+`java.awt.event`로 부터 모든 클래스를 가져온다.
+
+```java
+package java.awt.event.*;
+```
+
+
+### ref
+- http://www.tcpschool.com/java/java_usingClass_package
+- https://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94_%ED%8C%A8%ED%82%A4%EC%A7%80
+- https://thebook.io/006985/ch02/05/01/
+
+
+## import 키워드
+
+소스코드를 작성할 때 다른 패키지의 클래스를 사용할때는 패키지명이 포함된 이름을 사용하여야한다. 하지만, 매번 패키지명을 붙여서 작성하기란 여간 불편한일이 아닐것이다. 클래스의 코드를 작성하기 전에 import 문으로 사용하고자 하는 클래스의 패키지를 미리 명시해주면 소스코드에 사용되는 클래스 이름에서 패키지명은 생략할 수 있다.
+
+import 문의 역할은 컴파일러에게 소스파일에 사용된 클래스의 패키지에 대한 정보를 제공하는 것이다. 컴파일시에 컴파일러는 import문을 통해 소스파일에 사용된 클래스들의 패키지를 알아낸다음, 모든 클래스이름 앞에 패키지명을 붙여준다.
+
+### import문 선언 방법
+
+```java
+import packagename.classname;
+```
+or
+```java
+import packagename.*;
+```
+
+import문을 여러 번 사용하는 대신 '패키지명.*'을 이용해서 지정된 패키지에 속하는 모든 클래스를 패키지명 없이 사용할 수 있다.
+
+### import 사용
+
+위의 패키지 package java.awt.event에서 `ActionEvent` 클래스만 가져온다.
+
+```java
+import java.awt.event.ActionEvent;
+```
+
+추가적으로 해당 import 선언뒤에 단순한 클래스 이름을 사용하여 `ActionEvent`클래스를 참조할 수 있다.
+
+```java
+import java.awt.event.ActionEvent;
+
+ActionEvent myEvent = new ActionEvent();
+```
+
+클래스들은 import 선언 없이 직접사용할 수 있다.
+
+```java
+java.awt.event.ActionEvent myEvent = new java.awt.event.ActionEvent();
+```
+
+java.lang 패키지는 import 문을 사용하지않고도 사용 가능하다.
+
+### ref
+- https://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94_%ED%8C%A8%ED%82%A4%EC%A7%80
+- https://choiwonwoo.tistory.com/entry/Java-%EA%B8%B0%EC%B4%88-Package-vs-Import%EB%9E%80
+
+
+### 클래스 패스(Class Path)
+
+클래스패스란 말 그대로 클래스를 찾기 위한 경로이다. 자바에서 클래스패스의 의미도 똑같다. JVM이 프로그램을 실행할 때, 클래스파일을 찾는데 기준이 되는 파일 경로를 말하는 것이다. 소스코드(.Java로 끝나는 파일)를 컴파일하면 소스코드가 `바이트 코드` (바이너리 형태의 .class 파일) 로 변환된다. java runtime(java 또는 jre)으로 이 .class 파일을 찾으면 첫 번째로 찾은 파일을 사용한다.
+
+classpath를 지정할 수 있는 두가지 방법이 있다. 하나는 환경 변수 CLASSPATH를 사용하는 방법이고, 하나는 java runtime에 -classpath 플래그를 사용하는 방법이다. 
+
+class가 무엇이고 해당 class를 java가 어떻게 참조하는지에 대한 기본적인 설명은 생활코딩 강의에서 좀 더 자세히 확인할 수 있었다.
+
+https://opentutorials.org/course/1223/5527
+
+나는 해당 강의를 보면서 java는 굳이 javac라는 빌드 과정을 내부적으로 같고있지 않는가? 라는 의문점을 같게 되었고 해당 대답은 아래에서 찾을 수 있었다.
+
+https://blog.wanzargen.me/10
+
+이유는 다음과 같다.
+
+```
+VM(자바 실행 프로그램)이 이렇게 얻어진 byte code (.class 파일)을 실행할 때에는 컴파일 과정에서 진행한 일들을 진행하지 않고 말 그대로 실행만 한다.
+
+때문에 소스코드보다 이해가 쉽기 때문에 속도가 더 빠를 뿐만 아니라, 매번 소스코드 문법을 검사하는 등 불필요한 작업을 생략할 수 있어서 효율적이다.
+```
+
+### classpath에 사용할 수 있는 값
+
+classpath는 콜론(:)으로 구분된 디렉토리 및 파일 목록이다.
+아래의 세가지 유형의 파일과 디렉토리를 classpath에 지정할 수 있다.
+
+- /export/home/username/java/classes와 같은 디렉토리
+- myclasses.zip과 같은 zip 파일
+- myclases.jar와 같은 jar(자바 아카이브) 파일
+
+예를 들어 세가지 유형을 모두 사용하면 다음과 같이 지정할 수 있다.
+
+```
+/export/home/username/java/classes:/export/home/username/java/classes/util.zip:/export/home/username/java/classes/checkers.jar
+```
+
+
+### ref
+- https://effectivesquid.tistory.com/entry/%EC%9E%90%EB%B0%94-%ED%81%B4%EB%9E%98%EC%8A%A4%ED%8C%A8%EC%8A%A4classpath%EB%9E%80
+- https://goateedev.tistory.com/169
+- https://opentutorials.org/course/1223/5527
