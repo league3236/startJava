@@ -1,11 +1,19 @@
 
 
-mysql run
+docker build
+
+```/bin/bash
+$ docker build -t leaguemysql:latest .
 ```
-source ./init.sh
+
+docker-compose up
+
+```/bin/bash
+$ docker-compose up -d 
 ```
 
 mysql stop
+
 ```
 ```
 
