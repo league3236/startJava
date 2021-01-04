@@ -3,10 +3,12 @@ package com.example.springstudy.repository;
 import com.example.springstudy.SpringstudyApplicationTests;
 import com.example.springstudy.model.entity.User;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -40,6 +42,7 @@ public class UserRepositoryTest extends SpringstudyApplicationTests {
     }
 
     @Test
+    @Transactional
     public void update() {
         Optional<User> user = userRepository.findById(2L);
 
@@ -53,12 +56,19 @@ public class UserRepositoryTest extends SpringstudyApplicationTests {
     }
 
     @Test
+    @Transactional
     public void delete() {
-        Optional<User> user = userRepository.findById(2L);
+        Optional<User> user = userRepository.findById(3L);
+
+        Assertions.assertTrue(user.isPresent()); // True
 
         user.ifPresent( selectUser -> {
             userRepository.delete(selectUser);
         });
+
+        Optional<User> deleteUser = userRepository.findById(3L);
+
+        Assertions.assertFalse(deleteUser.isPresent());  // False
 
     }
 
