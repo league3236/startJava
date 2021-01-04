@@ -3,7 +3,7 @@
 docker build
 
 ```/bin/bash
-$ docker build -t leaguemysql:latest .
+$ docker build -t leaguemysql:1.0 .
 ```
 
 docker-compose up
@@ -12,8 +12,9 @@ docker-compose up
 $ docker-compose up -d 
 ```
 
-mysql stop
+docker-compose down
 
-```
+```/bin/bash
+$ docker-compose down
 ```
 
