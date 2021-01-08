@@ -32,12 +32,14 @@ public class UserRepositoryTest extends SpringstudyApplicationTests {
     }
 
     @Test
-    public void read(Long id) {
-        Optional<User> user = userRepository.findById(2L);
+    @Transactional
+    public void read() {
+        Optional<User> user = userRepository.findById(4L);
 
-        user.ifPresent( selectUser -> {
-            System.out.println("user : " + selectUser);
-            System.out.println("email : " + selectUser.getEmail());
+        user.ifPresent(selectUser -> {
+            selectUser.getOrderDetailList().stream().forEach(detail -> {
+                System.out.println(detail.getItemId());
+            });
         });
     }
 
@@ -46,7 +48,7 @@ public class UserRepositoryTest extends SpringstudyApplicationTests {
     public void update() {
         Optional<User> user = userRepository.findById(2L);
 
-        user.ifPresent( selectUser -> {
+        user.ifPresent(selectUser -> {
             selectUser.setAccount("ppp");
             selectUser.setUpdatedAt(LocalDateTime.now());
             selectUser.setUpdatedBy("update Method()");
@@ -62,7 +64,7 @@ public class UserRepositoryTest extends SpringstudyApplicationTests {
 
         Assertions.assertTrue(user.isPresent()); // True
 
-        user.ifPresent( selectUser -> {
+        user.ifPresent(selectUser -> {
             userRepository.delete(selectUser);
         });
 

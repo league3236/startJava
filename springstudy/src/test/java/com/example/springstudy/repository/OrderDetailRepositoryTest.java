@@ -19,10 +19,10 @@ public class OrderDetailRepositoryTest extends SpringstudyApplicationTests {
         orderDetail.setOrderAt(LocalDateTime.now());
 
         //어떤사람?
-        orderDetail.setUserId(4L);
+//        orderDetail.setUserId(4L);
 
         //어떤상품?
-        orderDetail.setItemId(1L);
+//        orderDetail.setItemId(1L);
 
         OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);
         Assertions.assertNotNull(newOrderDetail);
