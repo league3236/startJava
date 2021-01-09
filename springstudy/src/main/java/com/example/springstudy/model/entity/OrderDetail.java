@@ -4,6 +4,7 @@ package com.example.springstudy.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString(exclude = {"user", "item"})
 public class OrderDetail {
 
     @Id
@@ -20,9 +22,12 @@ public class OrderDetail {
 
     private LocalDateTime orderAt;
 
+    // N : 1
     @ManyToOne
     private User user;
 
-    private Long itemId;
+    // N : 1
+    @ManyToOne
+    private Item item;
 
 }

@@ -1,6 +1,7 @@
 package com.example.springstudy.repository;
 
 import com.example.springstudy.SpringstudyApplicationTests;
+import com.example.springstudy.model.entity.Item;
 import com.example.springstudy.model.entity.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
@@ -38,7 +39,8 @@ public class UserRepositoryTest extends SpringstudyApplicationTests {
 
         user.ifPresent(selectUser -> {
             selectUser.getOrderDetailList().stream().forEach(detail -> {
-                System.out.println(detail.getItemId());
+                Item item = detail.getItem();
+                System.out.println(item);
             });
         });
     }
