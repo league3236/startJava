@@ -35,7 +35,9 @@ public class UserRepositoryTest extends SpringstudyApplicationTests {
     @Test
     @Transactional
     public void read() {
-        Optional<User> user = userRepository.findById(4L);
+
+        // select * from user where id = ?
+        Optional<User> user = userRepository.findByAccount("TestUser02@gmail.com");
 
         user.ifPresent(selectUser -> {
             selectUser.getOrderDetailList().stream().forEach(detail -> {
