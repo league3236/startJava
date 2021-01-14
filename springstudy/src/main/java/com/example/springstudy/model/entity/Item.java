@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -18,22 +19,28 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String status;
+
     private String name;
-    private Integer price;
+
+    private String title;
+
     private String content;
 
+    private Integer price;
 
-    // onetomany
-    // LAZY = 지연로딩, EAGER = 즉시로딩
+    private String brandName;
 
-    // LAZY = SELECT * FROM item where id = ?
+    private LocalDateTime registeredAt;
 
-    // EAGER =
-    // item_id = order_detail.item_id
-    // user_id = order_datail.user_id
-    // where item.id = ?
-    // 연관관계 설정된 모든 테이블 join이 일어나며, 성능의 저하나 가지고 오지 못할 위험이 있음. 연관관계 설정시 LAZY를 추천함.
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
-    private List<OrderDetail> orderDetailList;
+    private LocalDateTime unregisteredAt;
 
+    private LocalDateTime createdAt;
+
+    private String createdBy;
+
+    private LocalDateTime updatedAt;
+
+    private String updatedBy;
 }
