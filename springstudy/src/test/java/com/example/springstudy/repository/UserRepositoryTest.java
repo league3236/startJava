@@ -21,30 +21,13 @@ public class UserRepositoryTest extends SpringstudyApplicationTests {
 
     @Test
     public void create() {
-        User user = new User();
-        user.setAccount("TestUser02");
-        user.setEmail("TestUser02@gmail.com");
-        user.setPhoneNumber("010-1111-1111");
-        user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("TestUser2");
 
-        User newUser = userRepository.save(user);
-        System.out.println("newUser : " + newUser);
     }
 
     @Test
     @Transactional
     public void read() {
 
-        // select * from user where id = ?
-        Optional<User> user = userRepository.findByAccount("TestUser02@gmail.com");
-
-        user.ifPresent(selectUser -> {
-            selectUser.getOrderDetailList().stream().forEach(detail -> {
-                Item item = detail.getItem();
-                System.out.println(item);
-            });
-        });
     }
 
     @Test
