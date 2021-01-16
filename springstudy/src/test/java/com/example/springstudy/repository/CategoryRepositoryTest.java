@@ -39,11 +39,14 @@ public class CategoryRepositoryTest extends SpringstudyApplicationTests {
     @Test
     public void read(){
 
-        Optional<Category> optionalCategory = categoryRepository.findById(1L);
+        String type = "COMPUTER";
+
+        Optional<Category> optionalCategory = categoryRepository.findByType(type);
 
 //        select * from category where type = 'COMPUTER'
 
         optionalCategory.ifPresent(c -> {
+            Assertions.assertEquals(c.getType(), type);
             System.out.println(c.getId());
             System.out.println(c.getType());
             System.out.println(c.getTitle());
