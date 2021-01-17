@@ -49,6 +49,9 @@ public class UserRepositoryTest extends SpringstudyApplicationTests {
     @Transactional
     public void read() {
 
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
+        Assertions.assertNotNull(user);
+
     }
 
     @Test
