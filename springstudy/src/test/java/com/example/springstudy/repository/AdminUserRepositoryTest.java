@@ -26,5 +26,7 @@ public class AdminUserRepositoryTest extends SpringstudyApplicationTests {
         AdminUser newAdminUser = adminUserRepository.save(adminUser);
         Assertions.assertNotNull(newAdminUser);
 
+        newAdminUser.setAccount("CHANGE");
+        adminUserRepository.save(newAdminUser);
     }
 }
