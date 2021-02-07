@@ -45,8 +45,6 @@ public class Item {
 
     private String updatedBy;
 
-    private Long partnerId;
-
     // Item N : 1 Partner
     @ManyToOne
     private Partner partner;

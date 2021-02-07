@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity // == table
-@ToString(exclude = {"orderGroup"})
+@ToString(exclude = {"orderGroupList"})
 public class User {
 
     @Id
@@ -43,7 +43,6 @@ public class User {
     private String updatedBy;
 
     // User 1 : N OrderGroup
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<OrderGroup> orderGroupList;
 
