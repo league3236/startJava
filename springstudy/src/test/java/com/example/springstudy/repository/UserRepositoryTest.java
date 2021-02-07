@@ -38,8 +38,14 @@ public class UserRepositoryTest extends SpringstudyApplicationTests {
         user.setPhoneNumber(phoneNumber);
         user.setRegisteredAt(registeredAt);
 
-        User newUser = userRepository.save(user);
+        User u = User.builder()
+                .account(account)
+                .password(password)
+                .status(status)
+                .email(email)
+                .build();
 
+        User newUser = userRepository.save(user);
         Assertions.assertNotNull(newUser);
     }
 
