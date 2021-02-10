@@ -2,6 +2,7 @@
 package com.example.springstudy.controller;
 
 import com.example.springstudy.model.SearchParam;
+import com.example.springstudy.model.network.Header;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,4 +31,11 @@ public class GetController {
 
         return searchParam;
     }
+
+    @GetMapping("/header")
+    public Header getHeader() {
+        // {"resultCode" : "OK", "description" : "OK"}
+        return Header.builder().resultCode("OK").description("OK").build();
+    }
+
 }
