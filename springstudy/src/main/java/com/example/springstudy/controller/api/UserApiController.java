@@ -2,26 +2,34 @@ package com.example.springstudy.controller.api;
 
 import com.example.springstudy.ifs.CrudInterface;
 import com.example.springstudy.model.network.Header;
+import com.example.springstudy.model.network.request.UserApiRequest;
+import com.example.springstudy.model.network.response.UserApiResponse;
+import com.example.springstudy.service.UserApiLogicService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
-public class UserApiController implements CrudInterface {
+public class UserApiController implements CrudInterface<UserApiRequest, UserApiResponse> {
+
+    @Autowired
+    private UserApiLogicService userApiLogicService;
+
     @Override
     @PostMapping("")            // /api/user
-    public Header create() {        // C
-        return null;
+    public Header<UserApiResponse> create(@RequestBody Header<UserApiRequest> request) {        // C
+        return userApiLogicService.create(request);
     }
 
     @Override
     @GetMapping("{id}")         // /api/user/{id}
-    public Header read(@PathVariable(name = "id") Long id) {
+    public Header<UserApiResponse> read(@PathVariable(name = "id") Long id) {
         return null;
     }
 
     @Override
     @PutMapping("")             // /api/user
-    public Header update() {
+    public Header<UserApiResponse> update(@RequestBody Header<UserApiRequest> request) {
         return null;
     }
 
