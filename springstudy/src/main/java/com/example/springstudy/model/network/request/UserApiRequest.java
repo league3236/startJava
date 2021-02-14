@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.swing.*;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -25,4 +26,8 @@ public class UserApiRequest {
     private String email;
 
     private String phoneNumber;
+
+    private LocalDateTime registeredAt;
+
+    private LocalDateTime unregisteredAt;
 }

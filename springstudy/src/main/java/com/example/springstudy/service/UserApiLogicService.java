@@ -65,20 +65,20 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
        Optional<User> optional = userRepository.findById(userApiRequest.getId());
 
        return optional.map( user -> {
-           // 3. update
-           user.setAccount(user.getAccount())
-                   .setPassword(user.getPassword())
-                   .setStatus(user.getStatus())
-                   .setPhoneNumber(user.getPhoneNumber())
-                   .setEmail(user.getEmail())
-                   .setRegisteredAt(user.getRegisteredAt())
-                   .setUnregisteredAt(user.getUnregisteredAt())
+           // 3. data -> update
+           user.setAccount(userApiRequest.getAccount())
+                   .setPassword(userApiRequest.getPassword())
+                   .setStatus(userApiRequest.getStatus())
+                   .setPhoneNumber(userApiRequest.getPhoneNumber())
+                   .setEmail(userApiRequest.getEmail())
+                   .setRegisteredAt(userApiRequest.getRegisteredAt())
+                   .setUnregisteredAt(userApiRequest.getUnregisteredAt())
                    ;
            // 4. userApiResponse
            return user;
        })
-       .map(user -> userRepository.save(user))   // update
-       .map(user -> response(user))             // user response
+       .map(user -> userRepository.save(user))   // update -> newUser
+       .map(updateUser -> response(updateUser))             // user response
        .orElseGet(()->Header.ERROR("데이터 없음"));
     }
 
